@@ -10,6 +10,7 @@ const registerUser = asyncHandler( async (req,res)=>{
     if(!name || !email || !password) {
         res.status(422).json({message: 'Please enter all feilds', status: 422});
         throw new Error('Please enter all feilds')
+        return;
     }
 
     // check for existing user
@@ -17,7 +18,8 @@ const registerUser = asyncHandler( async (req,res)=>{
 
     if(userExist) {
         res.status(422).json({message: "User already exist", status : 422})
-            throw new Error("User already Exists");
+        throw new Error("User already Exists");
+        return;
     }
     
     // creating a user
@@ -25,7 +27,7 @@ const registerUser = asyncHandler( async (req,res)=>{
         name,
         email,
         password,
-        pic,
+        pic
     })
     
     if(user) {
@@ -36,6 +38,7 @@ const registerUser = asyncHandler( async (req,res)=>{
             password: user.password,
             token: generateWebToken(user._id)
         });
+        return;
     }
     
     res.status(500).json({message: "Server Error"});
@@ -51,7 +54,6 @@ const authUser = asyncHandler( async (req,res)=>{
     }
     else{
         const userExist=await User.findOne({email});
-    
         if(!userExist){
             res.status(400).json({message: "Invalid Credentials", status: 400});
             console.error("Invalid Credentials");
@@ -63,7 +65,13 @@ const authUser = asyncHandler( async (req,res)=>{
                 console.error("Invalid Credentials");
             }
             else{
-                res.status(201).json({message: "Login SuccessFull",userExist});
+                res.status(201).json({
+                    message: "Login SuccessFull",
+                    name: userExist.name,
+                    email,
+                    password: userExist.password,
+                    token: generateWebToken(userExist._id)
+                });
             }
         }
     }

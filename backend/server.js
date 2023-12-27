@@ -9,14 +9,16 @@ dotenv.config();
 const PORT=process.env.PORT;
 
 // Importing router 
-const router = require('./routes/userRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
+const chatRoutes = require('./routes/chatRoutes.js');
 
 // connecting db.js
 require('./config/db')
 
 // router middleware 
 app.use(express.json());
-app.use('/api/user',router);
+app.use('/api/user',userRoutes);
+app.use('/api/chat',chatRoutes)
 
 app.get("/",(req,res)=>{
     res.send("Hello World!");
