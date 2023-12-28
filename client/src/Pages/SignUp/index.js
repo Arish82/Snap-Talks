@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import "./index.css";
 import { Link, useNavigate } from 'react-router-dom';
-import PopUpMessage from '../../Components/Toast';
+// import PopUpMessage from '../../Components/Toast';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
+import PopUpMessage from '../../Components/Toast'
 
 export default function SignUp() {
     const [name, setname] = useState("")
