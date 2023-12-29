@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  /* border: 2px solid red; */
+  overflow: hidden;
+}
+.sidebar {
+  /* border: 2px solid rgb(0, 68, 255); */
+  width: 25%;
+}
+.message-box {
+  width: 75%;
+}
+
+.profile-container {
+    /* border: 2px solid red; */
+    height: 76%;
+    /* border: 2px solid red; */
+    overflow-x: hidden;
+    margin-top: 1.5em;
+  /* overflow-y:visi */
+}
+
+/* Resetting default styles for the scrollbar */
+.profile-container::-webkit-scrollbar {
+  width: 0.7em; /* Width of the scrollbar */
+  background-color: transparent; /* Transparent background */
+}
+
+/* Removing default scrollbar */
+.profile-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Transparent thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  /* background-color: var(--primary); Change thumb color on hover */
+  border: 2px solid transparent; /* Transparent border */
+}
+
+/* Custom styling for the scrollbar track */
+.profile-container::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent background */
+}
+
+/* Styling for the scrollbar on hover (optional) */
+.profile-container:hover::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Change thumb color on hover */
+}
+
+/* Optional: Adding a little shadow to the thumb */
+.profile-container::-webkit-scrollbar-thumb:active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.profiles {
+  /* border: 2px solid blue !important; */
+  /* border: 1px solid grey; */
+  height: 14%;
+}
