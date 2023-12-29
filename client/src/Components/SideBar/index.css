@@ -1,6 +1,6 @@
 /* Resetting default styles for the scrollbar */
 .profile-container::-webkit-scrollbar {
-  width: 0.7em; /* Width of the scrollbar */
+  width: 0.5em; /* Width of the scrollbar */
   background-color: transparent; /* Transparent background */
 }
 
@@ -32,12 +32,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.1em;
+  gap: 0.2em;
   padding-bottom: 1.5em;
   font-size: 15px;
 }
 
 .search-bar svg{
+  /* border: 2px solid red; */
   font-size: 2em;
   padding: 2px;
   border-radius: 50%;
@@ -53,4 +54,17 @@
 .profile-container {
     height: 76%;
     overflow-x: hidden;
+}
+
+.options{
+  /* border: 2px solid red; */
+  display: flex;
+  gap: 0.5em;
+  align-items:center;
+  /* margin: 1em; */
+  font-size: 1.3em;
+}
+
+.options div{
+
 }

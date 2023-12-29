@@ -1,11 +1,15 @@
 /* Base styles for the profile card */
 .profile-cards {
-  width: 100%;
+  width: 95%;
+  margin: auto;
   height: 16%;
   display: flex;
+  border-radius: 1.5em;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  /* border: 2px solid red; */
+
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none; /* webkit (safari, chrome) browsers */
@@ -25,7 +29,7 @@
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
-.profile-cards:focus{
+.active-holder{
   background-color: var(--grey-3);
 }
 

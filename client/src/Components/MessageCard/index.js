@@ -8,7 +8,7 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 export default function MessageCard(props) {
     return (
         <>
-            <div class="profile-cards">
+            <div class={`profile-cards ${props.active}`} >
                 <div class="profile-images">
                     <ProfileImage
                         src={props.url}
@@ -34,7 +34,11 @@ export default function MessageCard(props) {
                     </div>
                     <div className='lower-row' >
                         <div className='bio' >
-                            {props.latestMessage}
+                        {
+                            props.typing? 
+                            <span style={{color: "var(--primary)"}} >Typing...</span>:
+                            props.latestMessage
+                        }
                         </div>
                         <div className="badge-container">
                             {
