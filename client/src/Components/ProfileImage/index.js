@@ -6,10 +6,15 @@ export default function ProfileImage(props) {
         <>
             <Badge
                 style={{ 
-                    cursor: "pointer" 
+                    cursor: "pointer",
+                    height: props.bh,
+                    width: props.bw,
+                    backgroundColor: props.bgColor
                 }}
                 count={props.count}
                 dot={props.dot}
+                offset={props.offset}
+                status={props.status}
             >
                 <div
                     style={{

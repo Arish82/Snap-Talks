@@ -1,7 +1,56 @@
+/* Resetting default styles for the scrollbar */
+.profile-container::-webkit-scrollbar {
+  width: 0.7em; /* Width of the scrollbar */
+  background-color: transparent; /* Transparent background */
+}
+
+/* Removing default scrollbar */
+.profile-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Transparent thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  /* background-color: var(--primary); Change thumb color on hover */
+  border: 2px solid transparent; /* Transparent border */
+} 
+
+/* Custom styling for the scrollbar track */
+.profile-container::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent background */
+}
+
+/* Styling for the scrollbar on hover (optional) */
+.profile-container:hover::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Change thumb color on hover */
+}
+
+/* Optional: Adding a little shadow to the thumb */
+.profile-container::-webkit-scrollbar-thumb:active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+
 .search-bar{
-    display: flex;
-    justify-content: center;
-    /* margin-bottom: 1.5em; */
-    padding-bottom: 1.5em;
-    /* border: 2px solid green; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1em;
+  padding-bottom: 1.5em;
+  font-size: 15px;
+}
+
+.search-bar svg{
+  font-size: 2em;
+  padding: 2px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.search-bar svg:hover {
+  background-color: var(--grey-1);
+}
+.search-bar svg:active {
+  background-color: var(--grey-2);
+}
+
+.profile-container {
+    height: 76%;
+    overflow-x: hidden;
 }

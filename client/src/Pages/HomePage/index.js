@@ -11,7 +11,7 @@ export default function HomePage() {
           <SideBar />
         </div>
         <div className="message-box">
-
+          
         </div>
       </div>
     </>

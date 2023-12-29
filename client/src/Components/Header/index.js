@@ -1,7 +1,6 @@
 import React from "react";
 import { MessageFilled } from "@ant-design/icons";
-import SearchBar from "../SearchBar";
-import ProfileImage from "../Avatar";
+import ProfileImage from "../ProfileImage";
 import "./index.css"
 
 export default function Header(props) {
@@ -21,9 +20,6 @@ export default function Header(props) {
                     width="3.5em"
                     height="3.5em"
                 />
-            </div>
-            <div className="search-bar border-bottom border-1">
-                <SearchBar />
             </div>
         </>
     );
