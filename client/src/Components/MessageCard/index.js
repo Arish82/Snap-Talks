@@ -2,14 +2,13 @@ import React from 'react'
 import "./index.css"
 import ProfileImage from "../ProfileImage"
 import { Badge } from 'antd';
-import CheckSharpIcon from '@mui/icons-material/CheckSharp';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 export default function MessageCard(props) {
     return (
         <>
-            <div class={`profile-cards ${props.active}`} >
-                <div class="profile-images">
+            <div style={props.style} className={`profile-cards ${props.active}`} >
+                <div className="profile-images">
                     <ProfileImage
                         src={props.url}
                         dot={props.typing}
@@ -23,7 +22,7 @@ export default function MessageCard(props) {
                         bgColor= "var(--primary)"
                     />
                 </div>
-                <div class="profile-details">
+                <div className="profile-details">
                     <div className='upper-row' >
                         <div className='username' >
                             {props.chatname}

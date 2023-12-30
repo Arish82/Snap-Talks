@@ -1,18 +1,18 @@
 import React from "react";
 import "./index.css";
 
-export default function SearchBar() {
+export default function SearchBar(props) {
     return (
-        <div class="search-container">
+        <div className="search-container" style={props.style}>
             <input
-                id="search"
+                id={props.id}
                 name="search"
                 type="text"
-                class="search-input"
+                className="search-input"
                 placeholder="Search..."
             />
-            <label for="search" class="search-button">
-                <i class="fas fa-search"></i>
+            <label htmlFor={props.id} className="search-button">
+                <i className="fas fa-search"></i>
             </label>
         </div>
     );

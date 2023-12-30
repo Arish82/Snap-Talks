@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import React from 'react';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 
 function PopUpMessage({ show, setShow, message }) {
-    //   const [show, setShow] = useState(false);
-
     return (
         <>
             <ToastContainer

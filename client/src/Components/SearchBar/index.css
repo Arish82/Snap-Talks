@@ -5,7 +5,7 @@
 .search-container {
   display: flex;
   align-items: center;
-  width: 75%;
+  /* width: 73%; */
   border-radius: 8px;
   overflow: hidden; /* Ensure no overflow from child elements */
   background-color: var(--grey-1); /* Transparent background */

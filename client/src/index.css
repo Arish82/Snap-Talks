@@ -2,11 +2,16 @@
   margin: 0;
   padding: 0;
 }
+body{
+  color: var(--dark);
+
+}
 
 :root {
   --primary: #6A4DFF;
   --primary-2: #6b8afb;
   --secondary: #493971;
+  --primary-light: #e3e7ff;
   --dark: #353535;
   --white: #FFFFFF;
   --grey-1: #f6f6f6;
