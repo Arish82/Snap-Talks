@@ -21,6 +21,7 @@ export default function ProfileImage(props) {
                         cursor: "pointer",
                         width: props.width,
                         height: props.height,
+                        ...props.style
                     }}
                     className="squircles"
                 >

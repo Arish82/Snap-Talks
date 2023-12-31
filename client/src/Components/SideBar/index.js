@@ -21,6 +21,8 @@ export default function SideBar(props) {
                 <FilterListRoundedIcon />
                 <DropDownMenu showDrawer={props.showDrawer} />
             </div>
+
+            {/* Implement Segmented for ease tab switch */}
             <div className="profile-container scroller-container"  >
                 <MessageCard chatname={"User Name"} timestamp={"12:34 PM"} url={url} latestMessage={"Small message regarding the user..."} unread={3} typing />
                 <MessageCard chatname={"User Name"} timestamp={"12:34 PM"} url={url} latestMessage={"Small message regarding the user..."} unread={4} />

@@ -84,7 +84,7 @@
 }
 .groupchat-creater-footer div {
     /* border: 2px solid red; */
-    border-radius: 50%;
+    /* border-radius: 50%; */
     padding: 0.5em;
     background-color: var(--primary);
     color: white;

@@ -76,7 +76,7 @@ function SideMenu(props) {
 
 
             <div className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
-                <div>
+                <div className='squircles' >
                     {
                         !groupName && <ArrowForwardRoundedIcon onClick={nextStephandler} />
                     }

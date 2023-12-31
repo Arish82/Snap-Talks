@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./index.css"
 import SideBar from '../../Components/SideBar'
 import SideMenu from "../../Components/SideMenu"
+import MessageContainer from '../../Components/MessageContainer'
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function HomePage() {
           <SideMenu open={open} onClose={onClose} />
         </div>
         <div className="message-box scroller-container">
-          
+          <MessageContainer />
         </div>
       </div>
     </>
