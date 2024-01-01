@@ -8,6 +8,7 @@ import MicRoundedIcon from '@mui/icons-material/MicRounded';
 import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import { Popover } from 'antd';
 import MessageArea from '../MessageArea';
+import ProfileViewer from './ProfileViewer';
 
 const colors = [
     "#faafa8", "#d3bfdb", "#fff8b8", "#efeff1", "#f6e2dd"
@@ -61,6 +62,7 @@ export default function MessageContainer() {
                         </div>
                     </div>
                 </div>
+
                 <div className="chat-body">
                     <MessageArea />
                 </div>
@@ -86,8 +88,8 @@ export default function MessageContainer() {
                 </div>
             </div>
             <div className="border-start details-profile-container" style={{ width: `${box2Width}` }}>
-
+                <ProfileViewer handleButtonClick={handleButtonClick} display={box1Width==="100%"?"": "show"} />
             </div>
-        </>
+        </> 
     )
 }
