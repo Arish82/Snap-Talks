@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./index.css";
 import { Link, useNavigate } from 'react-router-dom';
 // import PopUpMessage from '../../Components/Toast';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
 import PopUpMessage from '../../Components/Toast'
+import { ChatState } from '../../Context/ChatProvider';
 
 export default function SignUp() {
     const [name, setname] = useState("")
@@ -16,6 +17,14 @@ export default function SignUp() {
     const [toastshow, settoastshow] = useState(false);
     const [color, setcolor] = useState('');
     const navigate = useNavigate();
+    const { user } = ChatState();
+
+    useEffect(() => {
+      const userInfo = localStorage.getItem("user");
+      if(userInfo) {
+        navigate("/chats");
+      }
+    }, [navigate]);
 
     const postDetails = (pics) => {
         setloading(true);
@@ -76,7 +85,7 @@ export default function SignUp() {
             settoastshow(true);
             localStorage.setItem("user", JSON.stringify(data));
             setloading(false);
-            navigate('/');
+            navigate('/chats');
         }
         catch(err){
             if(err.request.status===500) {
@@ -163,7 +172,7 @@ export default function SignUp() {
                     </div>
                     <div className=" links-container d-flex justify-content-evenly ">
                         <span>
-                            <Link to="/login">
+                            <Link to="/">
                                 Already have an account
                             </Link>
                         </span>

@@ -4,9 +4,15 @@ import { Dropdown } from 'antd';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
+import { useNavigate } from 'react-router-dom';
 
 export default function DropDownMenu(props) {
-    
+    const navigate=useNavigate();
+
+    const handleLogout=()=>{
+        localStorage.clear();
+        navigate("/");
+    }
     const items = [
         {
             key: '1',
@@ -30,7 +36,7 @@ export default function DropDownMenu(props) {
             key: '3',
             label: (
                 <>
-                    <div className="options" >
+                    <div className="options" onClick={handleLogout} >
                         <LogoutRoundedIcon style={{ color: "var(--dark)" }} />
                         <div>Logout</div>
                     </div>

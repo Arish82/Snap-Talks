@@ -36,6 +36,7 @@ const registerUser = asyncHandler( async (req,res)=>{
             email: user.email,
             name: user.name,
             password: user.password,
+            pic: user.pic,
             token: generateWebToken(user._id)
         });
         return;
@@ -46,6 +47,7 @@ const registerUser = asyncHandler( async (req,res)=>{
 
 })
 
+// login
 const authUser = asyncHandler( async (req,res)=>{
     const {password, email} =req.body;
     if(!password || !email) {
@@ -70,6 +72,7 @@ const authUser = asyncHandler( async (req,res)=>{
                     name: userExist.name,
                     email,
                     password: userExist.password,
+                    pic: userExist.pic,
                     token: generateWebToken(userExist._id)
                 });
             }

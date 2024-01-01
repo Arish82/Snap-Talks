@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./index.css";
 import { Link, useNavigate } from 'react-router-dom';
 // import PopUpMessage from '../Toast';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import PopUpMessage from '../../Components/Toast';
+import { ChatState } from '../../Context/ChatProvider';
 
 export default function LoginPage() {
     const [email, setemail] = useState("");
@@ -14,6 +15,14 @@ export default function LoginPage() {
     const [toastshow, settoastshow] = useState(false);
     const [color, setcolor] = useState('');
     const navigate = useNavigate();
+    const { user } = ChatState();
+
+    useEffect(() => {
+      const userInfo = localStorage.getItem("user");
+      if(userInfo) {
+        navigate("/chats");
+      }
+    }, [navigate]);
 
     const loginHandle = async (event) =>{
         event.preventDefault();
@@ -42,7 +51,7 @@ export default function LoginPage() {
             setcolor("primary");
             localStorage.setItem("user", JSON.stringify(data));
             setloading(false);
-            navigate("/");
+            navigate("/chats");
         }
         catch(err) {
             if(err.request.status===500) {
@@ -56,7 +65,6 @@ export default function LoginPage() {
             setloading(false);
         }
     }
-
     return (
         <>
             <div className="d-flex justify-content-center align-items-center login-body">
