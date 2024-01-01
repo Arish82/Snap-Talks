@@ -4,4 +4,7 @@ Snap Talk is a cutting-edge chat application that redefines the way you connect 
 
 Preview of work done so far
 
+### ChatPage
+![image](https://github.com/Arish82/Snap-Talks/assets/76985066/8ec29896-5a10-40db-8241-f69ca61895bd)
+### Side Menu
 ![PreviewChatApp](https://github.com/Arish82/Snap-Talks/assets/76985066/56bca741-43e9-4932-aba4-1dcef0f0b20a)
