@@ -16,6 +16,6 @@ body {
 }
 .message-box {
   width: 74%;
+  display: flex;
 }
-
 

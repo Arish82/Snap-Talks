@@ -1,3 +1,15 @@
+.message-container{
+  height: 100%;
+  /* width: 66%; */
+  /* border: 2px solid red; */
+  transition: width 0.5s ease;
+}
+.details-profile-container{
+  /* border: 2px solid red; */
+  height: 100%;
+  /* width: 34%; */
+  transition: width 0.5s ease;
+}
 .chat-header {
   height: 10%;
   width: 100%;
@@ -45,7 +57,7 @@
 
 .chat-body {
   /* border: 2px solid red; */
-  background-color: var(--grey-1);
+  /* background-color: var(--grey-1); */
   height: 80%;
 }
 .chat-footer {

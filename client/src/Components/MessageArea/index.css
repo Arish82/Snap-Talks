@@ -1,0 +1,41 @@
+/* Resetting default styles for the scrollbar */
+.scroller-design::-webkit-scrollbar {
+  /* display: none; */
+  width: 0.8em; /* Width of the scrollbar */
+  background-color: transparent; /* Transparent background */
+}
+
+/* Removing default scrollbar */
+.scroller-design::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Transparent thumb */
+  border-radius: 20px; /* Rounded corners for the thumb */
+  /* background-color: var(--primary); Change thumb color on hover */
+  border: 2px solid transparent; /* Transparent border */
+  background-color: var(--primary);
+}
+
+/* Custom styling for the scrollbar track */
+.scroller-design::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent background */
+}
+
+/* Styling for the scrollbar on hover (optional) */
+.scroller-design:hover::-webkit-scrollbar-thumb {
+  /* background-color: var(--dark-light); Change thumb color on hover */
+}
+
+/* Scrollable Area */
+.scrollable-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.scrollable-div {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0em 2em;
+  display: flex;
+}
