@@ -14,7 +14,7 @@ export default function AllChatSet(props) {
             <div className={`${props.sender}-chats all-chats-set`}>
                 <div className="user-pic">
                     <div>
-                        <img className='' src={props.url} alt="" srcset="" />
+                        <img className='' src={props.url} alt="" />
                     </div>
                 </div>
                 <div className="message-content">

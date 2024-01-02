@@ -52,7 +52,7 @@ export default function UploadImage() {
             />
           </label>
         )}
-        {pic && <img src={pic} alt="" srcset="" />}
+        {pic && <img src={pic} alt="" />}
       </div>
     </>
   );

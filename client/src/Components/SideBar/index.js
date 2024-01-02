@@ -9,7 +9,7 @@ import { ChatState } from '../../Context/ChatProvider';
 import axios from 'axios';
 
 export default function SideBar(props) {
-    const {user} = ChatState();
+    const { user } = ChatState();
     const [searchUser, setSearchUser] = useState("");
     const [searchResult, setsearchResult] = useState([]);
     const [loading, setloading] = useState(false);
@@ -17,12 +17,12 @@ export default function SideBar(props) {
     const [chats, setchats] = useState([])
     var url = "https://t4.ftcdn.net/jpg/06/45/98/67/360_F_645986787_Vi2gX4riQy9d147RrU3rYfapkEKxMw9Z.jpg";
 
-    const handleUserSearch = async (param)=>{
+    const handleUserSearch = async (param) => {
         // if(!searchUser) return;
         setsearchTime(true);
         setloading(true);
-        try{
-            const {data}= await axios.get(`/api/user?search=${param}`,{
+        try {
+            const { data } = await axios.get(`/api/user?search=${param}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
@@ -30,14 +30,17 @@ export default function SideBar(props) {
             console.log(data);
             setloading(false);
             setsearchResult(data);
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
-    const handleCloseSearch =()=>{
+    const handleCloseSearch = () => {
         setsearchTime(false);
         setSearchUser("");
         setsearchResult([]);
+    }
+    const handleCreateChat = () =>{
+
     }
     return (
         <>
@@ -52,7 +55,7 @@ export default function SideBar(props) {
                     style={{
                         width: "75%"
                     }}
-                    id= "serach"
+                    id="serach"
                 />
                 <FilterListRoundedIcon />
                 <DropDownMenu showDrawer={props.showDrawer} />
@@ -62,9 +65,17 @@ export default function SideBar(props) {
             <div className="profile-container scroller-container">
                 {
                     (searchTime) &&
-                    (searchResult.map((member,key)=>{
+                    (searchResult.map((member, key) => {
+                        console.log(member);
                         return (
-                            <MessageCard key={key} chatname={member.name} url={member.pic} latestMessage={member.email} latestMessages={"Hey, here I'm using SnapTalk!🙂"} />
+                            <MessageCard
+                                key={member._id}
+                                onClick={handleCreateChat}
+                                chatname={member.name}
+                                url={member.pic}
+                                latestMessage={member.email}
+                                latestMessages={"Hey, here I'm using SnapTalk!🙂"}
+                            />
                         )
                     }))
                 }

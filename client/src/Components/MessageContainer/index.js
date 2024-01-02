@@ -16,9 +16,9 @@ const colors = [
 const content = (
     <div className='color-container'>
         {
-            colors.map((e) => {
+            colors.map((e,key) => {
                 return (
-                    <div className='color-box squircles' style={{ backgroundColor: e }} ></div>
+                    <div key={key} className='color-box squircles' style={{ backgroundColor: e }} ></div>
                 )
             })
         }
