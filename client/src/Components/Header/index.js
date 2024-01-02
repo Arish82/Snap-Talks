@@ -15,7 +15,7 @@ export default function Header(props) {
                 </div>
                 <ProfileImage
                     src={props.url}
-                    count={1}
+                    count={props.count}
                     alt="Avatar"
                     width="3.5em"
                     height="3.5em"
