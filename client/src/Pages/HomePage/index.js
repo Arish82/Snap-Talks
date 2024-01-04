@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import SideBar from "../../Components/SideBar";
-import SideMenu from "../../Components/SideMenu";
+import ChatBox from "../../Components/ChatBox";
+import DrawerMenu from "../../Components/DrawerMenu";
 import MessageContainer from "../../Components/MessageContainer";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
@@ -34,8 +34,8 @@ export default function HomePage() {
       {user && (
         <div className="main-container">
           <div className="sidebar border-end border-2" style={containerStyle}>
-            <SideBar showDrawer={showDrawer} />
-            <SideMenu open={open} onClose={onClose} />
+            <ChatBox showDrawer={showDrawer} />
+            <DrawerMenu open={open} onClose={onClose} />
           </div>
           <div className="message-box scroller-container">
             <MessageContainer />

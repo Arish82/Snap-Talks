@@ -1,6 +1,6 @@
 import React from "react";
 import { MessageFilled } from "@ant-design/icons";
-import ProfileImage from "../ProfileImage";
+import UserAvatar from "../UserAvatar";
 import "./index.css"
 
 export default function Header(props) {
@@ -13,7 +13,7 @@ export default function Header(props) {
                         <MessageFilled className="logo-icon" />
                     </span>
                 </div>
-                <ProfileImage
+                <UserAvatar
                     src={props.url}
                     count={props.count}
                     alt="Avatar"

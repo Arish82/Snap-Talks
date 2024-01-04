@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './index.css';
-import MessageCard from '../MessageCard';
+import ChatCard from '../ChatCard';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import SearchBar from '../SearchBar';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import ProfileImage from '../ProfileImage';
+import UserAvatar from '../UserAvatar';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import UploadImage from '../UploadImage/UploadImage';
 import EmojiInput from './EmojiInput';
 import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
 
-function SideMenu(props) {
+function DrawerMenu(props) {
     var url = "https://t4.ftcdn.net/jpg/06/45/98/67/360_F_645986787_Vi2gX4riQy9d147RrU3rYfapkEKxMw9Z.jpg";
     const [groupName, setgroupName] = useState(false);
     const nextStephandler= ()=>{
@@ -31,17 +31,17 @@ function SideMenu(props) {
                     <div className="gc-search-bar"  >
                         <div className="members-list">
                             <div className="member">
-                                <ProfileImage src={url} width={"1.8em"} height={"1.8em"}/> 
+                                <UserAvatar src={url} width={"1.8em"} height={"1.8em"}/> 
                                 User Name 
                                 <ClearRoundedIcon />
                             </div>
                             <div className="member">
-                                <ProfileImage src={url} width={"1.8em"} height={"1.8em"}/> 
+                                <UserAvatar src={url} width={"1.8em"} height={"1.8em"}/> 
                                 User Name 
                                 <ClearRoundedIcon />
                             </div>
                             <div className="member">
-                                <ProfileImage src={url} width={"1.8em"} height={"1.8em"}/> 
+                                <UserAvatar src={url} width={"1.8em"} height={"1.8em"}/> 
                                 User Name 
                                 <ClearRoundedIcon />
                             </div>
@@ -49,18 +49,18 @@ function SideMenu(props) {
                         <SearchBar id="user-search" style={{ width: "90%" }} />
                     </div>
                     <div className="groupchat-creater-profile-container scroller-container">
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                        <MessageCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
+                        <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
                     </div>
                 </div>
             }
@@ -91,4 +91,4 @@ function SideMenu(props) {
     );
 }
 
-export default SideMenu;
+export default DrawerMenu;

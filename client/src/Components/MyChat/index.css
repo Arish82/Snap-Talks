@@ -10,7 +10,7 @@
   border-radius: 10px; /* Rounded corners for the thumb */
   /* background-color: var(--primary); Change thumb color on hover */
   border: 2px solid transparent; /* Transparent border */
-} 
+}
 
 /* Custom styling for the scrollbar track */
 .scroller-container::-webkit-scrollbar-track {
@@ -27,40 +27,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }
 
-
-.search-bar{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.2em;
-  padding-bottom: 1.5em;
-  font-size: 15px;
-}
-
-.search-bar svg{
-  /* border: 2px solid red; */
-  font-size: 2em;
-  padding: 2px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.search-bar svg:hover {
-  background-color: var(--grey-1);
-}
-.search-bar svg:active {
-  background-color: var(--grey-2);
-}
-
 .profile-container {
-    height: 74%;
-    overflow-x: hidden;
-}
-
-.options{
-  /* border: 2px solid red; */
-  display: flex;
-  gap: 0.5em;
-  align-items:center;
-  /* margin: 1em; */
-  font-size: 1.3em;
+  height: 74%;
+  overflow-x: hidden;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "antd";
 
-export default function ProfileImage(props) {
+export default function UserAvatar(props) {
     return (
         <>
             <Badge

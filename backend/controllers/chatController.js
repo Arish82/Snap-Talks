@@ -65,7 +65,7 @@ const fetchChats = expressAsyncHandler(
             .populate("users","-password")
             .populate("groupAdmin", "-password")
             .populate("latestMessage")
-            .sort({udpatedAt: -1})
+            .sort({updatedAt: -1})
             
             allChats = await User.populate(allChats, {
                 path: "latestMessage.sender",

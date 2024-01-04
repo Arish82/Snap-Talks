@@ -27,7 +27,7 @@ export default function SearchBar(props) {
                     <div className="search-button" onClick={()=>{
                         props.handleCloseSearch();
                     }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 }
         </div>

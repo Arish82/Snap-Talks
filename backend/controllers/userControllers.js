@@ -69,6 +69,7 @@ const authUser = asyncHandler( async (req,res)=>{
             else{
                 res.status(201).json({
                     message: "Login SuccessFull",
+                    _id:userExist._id,
                     name: userExist.name,
                     email,
                     password: userExist.password,

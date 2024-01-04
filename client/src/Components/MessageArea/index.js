@@ -2,7 +2,7 @@ import React from 'react';
 import "./index.css";
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
-import ProfileImage from '../ProfileImage';
+import ProfileImage from '../UserAvatar';
 import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Dropdown } from 'antd';

@@ -1,15 +1,15 @@
 import React from 'react'
 import "./index.css"
-import ProfileImage from "../ProfileImage"
+import UserAvatar from "../UserAvatar"
 import { Badge } from 'antd';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
-export default function MessageCard(props) {
+export default function ChatCard(props) {
     return (
         <>
-            <div style={props.style} className={`profile-cards ${props.active}`} >
+            <div onClick={()=> {props.onClickFunc(props._id)}} style={props.style} className={`profile-cards ${props.active}`} >
                 <div className="profile-images">
-                    <ProfileImage
+                    <UserAvatar
                         src={props.url}
                         dot={props.typing}
                         alt="Avatar"

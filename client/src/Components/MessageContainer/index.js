@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./index.css"
-import ProfileImage from '../ProfileImage'
+import ProfileImage from '../UserAvatar'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import AttachmentIcon from '@mui/icons-material/Attachment';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
