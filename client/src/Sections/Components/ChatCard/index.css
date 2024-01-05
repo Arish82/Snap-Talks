@@ -19,12 +19,12 @@
   /* box-sizing: border-box; */
 }
 
-.profile-cards:hover{
+.hovering:hover{
   background-color: var(--grey-1);
   /* border-top: 2px solid red;
   border-bottom: 2px solid red; */
 }
-.profile-cards:active{
+.hovering:active{
   background-color: var(--grey-2);
   /* border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc; */

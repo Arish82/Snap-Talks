@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./index.css";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
+import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
 
-export default function UploadImage() {
-  const [pic, setpic] = useState("");
-  const [loading, setloading] = useState(false);
-
+export default function UploadImage({pic,setpic,loading,setloading}) {
   const postDetails = (pics) => {
     setloading(true);
     if (!pics) {
@@ -40,8 +37,8 @@ export default function UploadImage() {
         {!pic && (
           <label for="pic" className="upload-docs-lb ">
             {/* squircles */}
-            <CameraAltRoundedIcon  />
-            ADD GROUP <br/> ICON
+            <CameraAltRoundedIcon />
+            ADD GROUP <br /> ICON
             <input
               type="file"
               className="upload-docs-input"

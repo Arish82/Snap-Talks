@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import ChatBox from "../../Components/ChatBox";
-import DrawerMenu from "../../Components/DrawerMenu";
-import MessageContainer from "../../Components/MessageContainer";
+import ChatBox from "../../Sections/ChatBox";
+import DrawerMenu from "../../Sections/Components/DrawerMenu";
+import MessageContainer from "../../Sections/Components/MessageContainer";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
 
@@ -13,7 +13,6 @@ export default function HomePage() {
   const navigate = useNavigate();
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
     if (!userInfo) {
       navigate("/");
     }

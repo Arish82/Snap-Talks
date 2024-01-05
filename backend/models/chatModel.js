@@ -23,6 +23,11 @@ const chatModel = mongoose.Schema(
         groupAdmin: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
+        },
+        pic: {
+            type: String,
+            required: true,
+            default: "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
         }
     },
     {

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // import PopUpMessage from '../../Components/Toast';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
-import PopUpMessage from '../../Components/Toast'
+import PopUpMessage from '../../Sections/Components/Toast'
 import { ChatState } from '../../Context/ChatProvider';
 
 export default function SignUp() {

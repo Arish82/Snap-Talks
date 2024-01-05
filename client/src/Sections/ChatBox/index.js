@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import Header from "../Header";
-import MyChat from "../MyChat";
-import SearchBar from "../SearchBar";
-import DropDownMenu from "../DropDownMenu";
+import Header from "../Components/Header";
+import MyChat from "../Components/MyChat";
+import SearchBar from "../Components/SearchBar";
+import DropDownMenu from "../Components/DropDownMenu";
 import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
-import { ChatState } from "../../Context/ChatProvider";
+// import { ChatState } from "../../Context/ChatProvider";
 import "./index.css";
 import axios from "axios";
+import { ChatState } from "../../Context/ChatProvider";
 
 export default function ChatBox(props) {
     const { user } = ChatState();

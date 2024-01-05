@@ -1,0 +1,60 @@
+import React, { useState } from 'react'
+import UploadImage from '../UploadImage/UploadImage'
+import EmojiPalette from '../EmojiPalette'
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import axios from 'axios';
+import { ChatState } from '../../../Context/ChatProvider';
+
+export default function GroupNameForm(props) {
+    const {user, chats, setChats, selectedChat, setSelectedChat} = ChatState();
+    const [name, setname] = useState("");
+    const [pic, setpic] = useState("")
+    const [loading, setloading] = useState(false)
+
+    const handleCreateGroup= async()=>{
+        if(!name || !props.selectedUsers) return;
+        try{
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            const {data} = await axios.post("/api/chat/group", {
+                name,
+                users: JSON.stringify(props.selectedUsers.map((element) => element._id)),
+                pic: pic ? pic: "https://forum.helloid.com/core/images/default/default_sg_large.png"
+            } ,config);
+            console.log(data, chats);
+            setChats([data[0], ...chats]);
+            setSelectedChat(data[0])
+            props.setopen(false);
+            props.closeLastDrawer();
+        }catch(err){
+            console.log(err);
+        }
+    }
+    return (
+        <>
+            <div className={`drawer ${props.open ? 'open' : ''}`}>
+            <div className="groupchat-creater-header border-bottom">
+                    <ArrowBackIosRoundedIcon style={{ cursor: "pointer" }} onClick={props.onClose} />
+                    <div className="groupchat-creater-text">
+                        Create a Group Chat
+                    </div>
+                </div>
+                <div className="groupchat-creater-body upload-box">
+                    <UploadImage pic={pic} setpic={setpic} loading={loading} setloading={setloading}/>
+                    <EmojiPalette inputValue={name} setInputValue={setname} />
+                </div>
+                <div onClick={handleCreateGroup} className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
+                    <button disabled={!(name.trim()).length || loading} className='squircles' >
+                        <DoneOutlineRoundedIcon />
+                    </button>
+                </div>
+            </div>
+        </>
+    )
+}

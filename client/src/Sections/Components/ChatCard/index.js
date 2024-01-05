@@ -7,7 +7,7 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 export default function ChatCard(props) {
     return (
         <>
-            <div onClick={()=> {props.onClickFunc(props._id)}} style={props.style} className={`profile-cards ${props.active}`} >
+            <div onClick={()=> {props.onClickFunc()}} style={props.style} className={`profile-cards ${props.active}`} >
                 <div className="profile-images">
                     <UserAvatar
                         src={props.url}

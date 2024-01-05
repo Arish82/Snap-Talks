@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./index.css"
-import { ChatState } from '../../Context/ChatProvider';
 import { getsender } from '../config/ChatLogic';
 import ChatCard from '../ChatCard';
 import axios from 'axios';
+import { ChatState } from '../../../Context/ChatProvider';
 
 export default function MyChat(props) {
     const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
@@ -18,12 +18,11 @@ export default function MyChat(props) {
                 }
             }
             const { data } = await axios.post("/api/chat", { userId }, config);
-
+            console.log(data, "Arish");
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
 
             setSelectedChat(data);
             props.handleCloseSearch();
-            console.log(data);
         } catch (err) {
             console.log(err);
         }
@@ -54,9 +53,10 @@ export default function MyChat(props) {
                     props.searchResult.map((member, key) => {
                         return (
                             <ChatCard
+                                active="hovering"
                                 key={member._id}
                                 _id={member._id}
-                                onClickFunc={handleCreateChat}
+                                onClickFunc={()=> handleCreateChat(member)}
                                 member={member}
                                 chatname={member.name}
                                 url={member.pic}
@@ -70,10 +70,10 @@ export default function MyChat(props) {
                     (!props.searchTime) &&
                     chats.map((chat) => {
                         const sender = getsender(userlogged, chat.users);
-                        console.log(userlogged);
+                        {/* console.log(userlogged); */}
                         return (
                             <ChatCard
-                                active={chat === selectedChat ? `active-holder` : ""}
+                                active={chat === selectedChat ? `active-holder` : "hovering"}
                                 onClickFunc={() => setSelectedChat(chat)}
                                 chatname={chat.chatName === "sender" ? sender.name : chat.chatName}
                                 timestamp={"12:34 PM"}
