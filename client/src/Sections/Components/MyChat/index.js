@@ -75,9 +75,9 @@ export default function MyChat(props) {
                             <ChatCard
                                 active={chat === selectedChat ? `active-holder` : "hovering"}
                                 onClickFunc={() => setSelectedChat(chat)}
-                                chatname={chat.chatName === "sender" ? sender.name : chat.chatName}
+                                chatname={!chat.isGroupChat ? sender.name : chat.chatName}
                                 timestamp={"12:34 PM"}
-                                url={sender.pic}
+                                url={chat.isGroupChat?chat.pic:sender.pic}
                                 latestMessage={"Small message regarding the user..."}
                                 unread={0}
                                 typing={false}

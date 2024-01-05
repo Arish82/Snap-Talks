@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import "./index.css"
-import ProfileImage from '../UserAvatar'
+import ProfileImage from '../Components/UserAvatar'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import AttachmentIcon from '@mui/icons-material/Attachment';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import MicRoundedIcon from '@mui/icons-material/MicRounded';
 import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import { Popover } from 'antd';
-import MessageArea from '../MessageArea';
+import MessageArea from '../Components/MessageArea';
 import ProfileViewer from './ProfileViewer';
 
 const colors = [

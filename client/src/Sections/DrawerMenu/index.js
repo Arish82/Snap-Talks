@@ -14,7 +14,7 @@ function DrawerMenu(props) {
     const { user } = ChatState();
     const [searchUser, setSearchUser] = useState("");
     const [searchResult, setsearchResult] = useState([]);
-    const [selectedUsers, setselectedUsers] = useState([]);
+    // const [props.selectedUsers, props.setselectedUsers] = useState([]);
     const [open, setopen] = useState(false)
 
     const handleUserSearch = async (param) => {
@@ -31,8 +31,8 @@ function DrawerMenu(props) {
     };
 
     const handleSelectUsers =(chat)=>{
-        if(!selectedUsers.find((e)=> e._id===chat._id))
-        setselectedUsers([chat,...selectedUsers])
+        if(!props.selectedUsers.find((e)=> e._id===chat._id))
+        props.setselectedUsers([chat,...props.selectedUsers])
     }
 
     const removeValueFromArray = (arr, value) => arr.filter(e => e !== value);
@@ -46,8 +46,8 @@ function DrawerMenu(props) {
             <div className={`drawer ${props.open ? 'open' : ''}`}>
                 <div className="groupchat-creater-header border-bottom">
                     <ArrowBackIosRoundedIcon style={{ cursor: "pointer" }} onClick={()=>{
-                        setselectedUsers([]);
-                        props.onClose()
+                        // props.setselectedUsers([]);
+                        props.closeGroupChatCreater()
                     }}/>
                     <div className="groupchat-creater-text">
                         Create a Group Chat
@@ -59,9 +59,9 @@ function DrawerMenu(props) {
                         <div className="gc-search-bar"  >
                             <div className="members-list">
                                 {
-                                    selectedUsers.map((selectedUser) =>{
+                                    props.selectedUsers.map((selectedUser) =>{
                                         return (
-                                            <div key={selectedUser._id} className="member" onClick={()=> setselectedUsers(removeValueFromArray(selectedUsers,selectedUser))} >
+                                            <div key={selectedUser._id} className="member" onClick={()=> props.setselectedUsers(removeValueFromArray(props.selectedUsers,selectedUser))} >
                                                 <UserAvatar src={selectedUser.pic} width={"1.8em"} height={"1.8em"} />
                                                 {selectedUser.name}
                                                 <ClearRoundedIcon />
@@ -90,7 +90,7 @@ function DrawerMenu(props) {
                             {
                                 searchResult && 
                                 searchResult.map((chat, key) => {
-                                    if(selectedUsers.find(e=>e._id===chat._id)) return(<></>)
+                                    if(props.selectedUsers.find(e=>e._id===chat._id)) return(<></>)
                                     return (
                                         <ChatCard
                                             style={{ height: "20%" }}
@@ -109,27 +109,15 @@ function DrawerMenu(props) {
                                     )
                                 })
                             }
-                            {/* <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" /> */}
                         </div>
                     </div>
                 }
                 <div className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
-                    <button disabled={selectedUsers.length<1} className='squircles' onClick={()=> setopen(true)} >
+                    <button disabled={props.selectedUsers.length<1} className='squircles' onClick={()=> setopen(true)} >
                         <ArrowForwardRoundedIcon />
                     </button>
                 </div>
-                <GroupNameForm selectedUsers={selectedUsers} setopen={setopen} closeLastDrawer={props.onClose} onClose={()=> setopen(false)} open={open} />
+                <GroupNameForm selectedUsers={props.selectedUsers} setopen={setopen} closeLastDrawer={props.closeGroupChatCreater} onClose={()=> setopen(false)} open={open} />
 
             </div>
         </>

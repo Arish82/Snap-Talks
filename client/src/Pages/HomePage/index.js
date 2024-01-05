@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import ChatBox from "../../Sections/ChatBox";
-import DrawerMenu from "../../Sections/Components/DrawerMenu";
-import MessageContainer from "../../Sections/Components/MessageContainer";
+import DrawerMenu from "../../Sections/DrawerMenu";
+import MessageContainer from "../../Sections/MessageContainer";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const { user } = ChatState();
+  const [selectedUsers, setselectedUsers] = useState([])
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -25,7 +26,8 @@ export default function HomePage() {
   const showDrawer = () => {
     setOpen(true);
   };
-  const onClose = () => {
+  const closeGroupChatCreater = () => {
+    setselectedUsers([]);
     setOpen(false);
   };
   return (
@@ -34,7 +36,7 @@ export default function HomePage() {
         <div className="main-container">
           <div className="sidebar border-end border-2" style={containerStyle}>
             <ChatBox showDrawer={showDrawer} />
-            <DrawerMenu open={open} onClose={onClose} />
+            <DrawerMenu open={open} selectedUsers={selectedUsers} setselectedUsers={setselectedUsers} closeGroupChatCreater={closeGroupChatCreater} />
           </div>
           <div className="message-box scroller-container">
             <MessageContainer />

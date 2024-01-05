@@ -15,6 +15,7 @@ export default function ChatBox(props) {
     const [searchResult, setsearchResult] = useState([]);
     const [searchTime, setsearchTime] = useState(false);
 
+    // searches users to create chats
     const handleUserSearch = async (param) => {
         setsearchTime(true);
         try {
@@ -38,6 +39,7 @@ export default function ChatBox(props) {
         <>
             <Header url={user && user.pic} />
             <div className="search-bar border-bottom border-1">
+                
                 <SearchBar
                     searchUser={searchUser}
                     setSearchUser={setSearchUser}

@@ -25,7 +25,7 @@ export default function GroupNameForm(props) {
             const {data} = await axios.post("/api/chat/group", {
                 name,
                 users: JSON.stringify(props.selectedUsers.map((element) => element._id)),
-                pic: pic ? pic: "https://forum.helloid.com/core/images/default/default_sg_large.png"
+                pic: pic ? pic: "https://1.bp.blogspot.com/-TCjM5XzRUSg/X75w1adIN3I/AAAAAAAAGPM/n1tW2tKMr-MsL2sCf8uneKIGMHj0TLT3QCNcBGAsYHQ/s720/Screenshot_2020-11-25-21-38-44-66.png"
             } ,config);
             console.log(data, chats);
             setChats([data[0], ...chats]);
@@ -40,7 +40,10 @@ export default function GroupNameForm(props) {
         <>
             <div className={`drawer ${props.open ? 'open' : ''}`}>
             <div className="groupchat-creater-header border-bottom">
-                    <ArrowBackIosRoundedIcon style={{ cursor: "pointer" }} onClick={props.onClose} />
+                    <ArrowBackIosRoundedIcon style={{ cursor: "pointer" }} onClick={()=> {
+                        props.onClose();
+                        setname("")
+                    }} />
                     <div className="groupchat-creater-text">
                         Create a Group Chat
                     </div>
@@ -49,7 +52,10 @@ export default function GroupNameForm(props) {
                     <UploadImage pic={pic} setpic={setpic} loading={loading} setloading={setloading}/>
                     <EmojiPalette inputValue={name} setInputValue={setname} />
                 </div>
-                <div onClick={handleCreateGroup} className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
+                <div onClick={()=> {
+                    handleCreateGroup()
+                    setname("")
+                }} className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
                     <button disabled={!(name.trim()).length || loading} className='squircles' >
                         <DoneOutlineRoundedIcon />
                     </button>
