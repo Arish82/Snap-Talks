@@ -69,10 +69,11 @@ export default function MyChat(props) {
                 }
                 {
                     (!props.searchTime) &&
-                    chats && chats.map((chat) => {
+                    chats && chats.map((chat,key) => {
                         const sender = getsender(userlogged, chat.users);
                         return (
                             <ChatCard
+                                key={key}
                                 active={chat === selectedChat ? `active-holder` : "hovering"}
                                 onClickFunc={() => setSelectedChat(chat)}
                                 chatname={!chat.isGroupChat ? sender.name : chat.chatName}

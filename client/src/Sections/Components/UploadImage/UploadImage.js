@@ -35,7 +35,7 @@ export default function UploadImage({pic,setpic,loading,setloading}) {
     <>
       <div className="upload-docs squircles">
         {!pic && (
-          <label for="pic" className="upload-docs-lb ">
+          <label htmlFor="pic" className="upload-docs-lb ">
             {/* squircles */}
             <CameraAltRoundedIcon />
             ADD GROUP <br /> ICON

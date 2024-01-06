@@ -18,9 +18,10 @@ function EmojiPalette({inputValue, setInputValue}) {
   ];
   const content = (
     <div className='emojis'>
-      {emojis.map((e) => {
+      {emojis.map((e,key) => {
         return (
           <span
+            key={key}
             onClick={handleEmojiClick}
           >{e}</span>
         )

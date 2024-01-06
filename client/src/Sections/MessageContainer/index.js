@@ -44,8 +44,8 @@ export default function MessageContainer() {
     return (
         <>
             <div className="message-container" style={{ width: `${box1Width}` }} >
-                <div onClick={handleButtonClick} className="chat-header ">
-                    <div className="details d-flex align-items-center">
+                <div className="chat-header ">
+                    <div onClick={handleButtonClick} className="details d-flex align-items-center">
                         <ProfileImage style={{ height: "3.6em", width: "3.6em" }} src={url} />
                         <div className="chat-details">
                             <div className='chat-name'>

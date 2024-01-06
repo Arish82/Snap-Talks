@@ -54,11 +54,12 @@ function HomePage() {
                 <h1 className="fw-bold" >Join <span style={{color: "var(--primary)"}} >Snap</span>Talk
                     <span>
                         <MessageFilled style={{color: "var(--primary)"}} className="logo-icon" />
-                    </span> Today</h1>
+                    </span> today<span style={{color: "var(--primary)"}}>!</span></h1>
                 <p>
                 <span  >
-                  <MailLockRoundedIcon style={{fontSize: "1.2em"}}/>
-                </span> Your Messages are safe with us.</p>
+                  {/* <MailLockRoundedIcon style={{fontSize: "1.2em"}}/> */}
+                </span>Connect, Chat, and Discover a New Era of Conversation.</p>
+                {/* Connect, Chat, and Discover a New Way to Communicate. */}
               </div>
             }
           </div>
