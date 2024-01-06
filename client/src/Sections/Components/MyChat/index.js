@@ -43,6 +43,7 @@ export default function MyChat(props) {
     useEffect(() => {
         setuserlogged(JSON.parse(localStorage.getItem("user")));
         fetchChats();
+        // console.log(chats);
     }, []);
 
     return (
@@ -68,9 +69,8 @@ export default function MyChat(props) {
                 }
                 {
                     (!props.searchTime) &&
-                    chats.map((chat) => {
+                    chats && chats.map((chat) => {
                         const sender = getsender(userlogged, chat.users);
-                        {/* console.log(userlogged); */}
                         return (
                             <ChatCard
                                 active={chat === selectedChat ? `active-holder` : "hovering"}

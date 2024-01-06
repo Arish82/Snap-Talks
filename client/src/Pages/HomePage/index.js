@@ -5,11 +5,13 @@ import DrawerMenu from "../../Sections/DrawerMenu";
 import MessageContainer from "../../Sections/MessageContainer";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
+import { MessageFilled } from "@ant-design/icons";
+import MailLockRoundedIcon from '@mui/icons-material/MailLockRounded';
 
-export default function HomePage() {
+function HomePage() {
   const [open, setOpen] = useState(false);
-  const { user } = ChatState();
-  const [selectedUsers, setselectedUsers] = useState([])
+  const { user, selectedChat, setSelectedChat } = ChatState();
+  const [selectedUsers, setselectedUsers] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,13 +38,34 @@ export default function HomePage() {
         <div className="main-container">
           <div className="sidebar border-end border-2" style={containerStyle}>
             <ChatBox showDrawer={showDrawer} />
-            <DrawerMenu open={open} selectedUsers={selectedUsers} setselectedUsers={setselectedUsers} closeGroupChatCreater={closeGroupChatCreater} />
+            <DrawerMenu
+              open={open}
+              selectedUsers={selectedUsers}
+              setselectedUsers={setselectedUsers}
+              closeGroupChatCreater={closeGroupChatCreater}
+            />
           </div>
           <div className="message-box scroller-container">
-            <MessageContainer />
+            {
+              selectedChat ? 
+              <MessageContainer />
+              :
+              <div className="message-container w-100 d-flex justify-content-center align-items-center flex-column fw-bold" style={{backgroundColor: "var(--primary-light)"}} >
+                <h1 className="fw-bold" >Join <span style={{color: "var(--primary)"}} >Snap</span>Talk
+                    <span>
+                        <MessageFilled style={{color: "var(--primary)"}} className="logo-icon" />
+                    </span> Today</h1>
+                <p>
+                <span  >
+                  <MailLockRoundedIcon style={{fontSize: "1.2em"}}/>
+                </span> Your Messages are safe with us.</p>
+              </div>
+            }
           </div>
         </div>
       )}
     </>
   );
 }
+
+export default HomePage;
