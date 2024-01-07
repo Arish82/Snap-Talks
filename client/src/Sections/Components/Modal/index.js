@@ -10,7 +10,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
 
 const Modal = ({ onClose }) => {
-    const { user } = ChatState();
+    const { user, selectedChat, setSelectedChat } = ChatState();
     const [searchUser, setSearchUser] = useState("");
     const [searchResult, setsearchResult] = useState([]);
     const [selectedUsers, setselectedUsers] = useState([]);

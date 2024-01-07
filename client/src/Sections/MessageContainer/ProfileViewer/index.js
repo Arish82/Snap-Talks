@@ -55,6 +55,24 @@ export default function ProfileViewer(props) {
             console.log(err);
         }
     }
+    const handleGroupLeave= async()=>{
+        try{
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            const { data } = await axios.put("/api/chat/remove", { 
+                chatId: selectedChat._id,
+                userId: user._id
+             }, config);
+             setSelectedChat("");
+             props.setfetchAgain(!props.fetchAgain)
+        }catch(err){
+            console.log(err);
+        }
+    }
     return (
         <>
             <div onClick={props.handleButtonClick} className='closing' >
@@ -145,7 +163,7 @@ export default function ProfileViewer(props) {
                                                     <div className='tag' >Group Admin</div>
                                                 }
                                                 {
-                                                    user._id !== chat._id &&
+                                                    selectedChat.groupAdmin._id !== chat._id &&
                                                     <Dropdown menu={{ items }} placement="bottomRight" arrow>
                                                         <KeyboardArrowDownRoundedIcon />
                                                     </Dropdown>
@@ -157,7 +175,7 @@ export default function ProfileViewer(props) {
                             })
                         }
                     </div>
-                    <div className={`exit-group ${props.display}`}>
+                    <div onClick={handleGroupLeave} className={`exit-group ${props.display}`}>
                         <LogoutRoundedIcon /> Exit Group
                     </div>
                     {showModal && <Modal onClose={toggleModal} />}
