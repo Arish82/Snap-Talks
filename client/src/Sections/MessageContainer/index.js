@@ -9,6 +9,9 @@ import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import { Popover } from 'antd';
 import MessageArea from '../Components/MessageArea';
 import ProfileViewer from './ProfileViewer';
+import { ChatState } from '../../Context/ChatProvider';
+import { getsender } from '../Components/config/ChatLogic';
+import axios from 'axios';
 
 const colors = [
     "#faafa8", "#d3bfdb", "#fff8b8", "#efeff1", "#f6e2dd"
@@ -28,28 +31,55 @@ const content = (
 );
 
 export default function MessageContainer({fetchAgain, setfetchAgain}) {
+    const {user, selectedChat, openMessage} = ChatState();
+    const [message, setmessage] = useState("")
+    const [allMessages, setallMessages] = useState([]);
     const [box1Width, setBox1Width] = useState("100%");
     const [box2Width, setBox2Width] = useState("0%");
     const handleButtonClick = () => {
         setBox1Width(box1Width === "66%" ? "100%" : "66%");
         setBox2Width(box2Width === "0%" ? "33%" : "0%");
     };
+    const handleSendMessage= async(e)=>{
+        // e.preventDefault();
+        try{
+            const config={
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            };
 
-    const [message, setmessage] = useState("")
+            setmessage("");
+            const {data} = await axios.post("/api/message",{
+                content: message,
+                chatId: selectedChat._id
+            }, config);
+            setallMessages([...allMessages,data]);
+            console.log(data);
+        }catch(err){
+            console.log(err);
+            openMessage("error-message","error","Message not sent!");
+        }
+    }
+    const handletyping = (e) => {
+        if(e.target.value!=="\n")
+            setmessage(e.target.value)
+    }
     const props = {
         chatName: "User Name",
         status: "online"
     }
-    var url = "https://t4.ftcdn.net/jpg/06/45/98/67/360_F_645986787_Vi2gX4riQy9d147RrU3rYfapkEKxMw9Z.jpg";
+    
     return (
         <>
             <div className="message-container" style={{ width: `${box1Width}` }} >
                 <div className="chat-header ">
                     <div onClick={handleButtonClick} className="details d-flex align-items-center">
-                        <ProfileImage style={{ height: "3.6em", width: "3.6em" }} src={url} />
+                        <ProfileImage style={{ height: "3.6em", width: "3.6em" }} src={selectedChat.isGroupChat?selectedChat.pic:getsender(user,selectedChat.users).pic} />
                         <div className="chat-details">
                             <div className='chat-name'>
-                                {props.chatName}
+                                {selectedChat.isGroupChat?selectedChat.chatName:getsender(user,selectedChat.users).name}
                             </div>
                             <div className="status">
                                 {props.status}
@@ -72,18 +102,28 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                             <AttachmentIcon />
                         </div>
                     </div>
-                    <textarea value={message} onChange={(e) => setmessage(e.target.value)} className='message-input' rows="1" type="text" placeholder="Type your message..." />
+                    <textarea onKeyDown={(e)=> {
+                        if(e.nativeEvent.key==="Enter" && !e.nativeEvent.shiftKey)
+                            handleSendMessage();
+                    }} 
+                    value={message} 
+                    onChange={handletyping} 
+                    className='message-input' rows="1" type="text" placeholder="Type your message..." />
                     <div className="chat-icons">
                         <div className="color-icon squircles">
                             <Popover style={{ backgroundColor: "transparent" }} content={content} title="" trigger="click" >
                                 <PaletteRoundedIcon />
                             </Popover>
                         </div>
-                        <div className="send-icon squircles">
-                            {
-                                message.length === 0 ? <MicRoundedIcon /> : <SendRoundedIcon />
-                            }
-                        </div>
+                        {
+                            message.length === 0 ?
+                            <div className="send-icon squircles">
+                                <MicRoundedIcon />
+                            </div>:
+                            <div className="send-icon squircles" onClick={handleSendMessage}>
+                                <SendRoundedIcon/>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
