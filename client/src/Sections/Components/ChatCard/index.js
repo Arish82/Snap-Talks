@@ -53,6 +53,9 @@ export default function ChatCard(props) {
                         </div>
                     </div>
                 </div>
+                {
+                    props.content
+                }
             </div>
         </>
     )

@@ -15,6 +15,7 @@ body{
   --dark: #353535;
   --dark-2: #2e333d;
   --white: #FFFFFF;
+  --danger: #ff4d4f;
   --grey-1: #f6f6f6;
   --grey-2: #e8e8e8;
   --grey-3: #d9d9d9;
@@ -27,6 +28,7 @@ body{
   --sand: #fff8b8;
   --chalk: #efeff1;
   --blossom: #f6e2dd;
+
 }
 
 .squircles {

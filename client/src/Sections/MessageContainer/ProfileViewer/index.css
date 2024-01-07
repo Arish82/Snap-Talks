@@ -10,8 +10,8 @@
     font-size: 2em;
 }
 .chat-description-container {
-  border: 2px solid red; 
-  height: 50%;
+  /* border: 2px solid red;  */
+  height: 40%;
 
   display: flex;
   flex-direction: column;
@@ -40,17 +40,17 @@
 .image-preview img {
   border-radius: 50%;
 }
-/* .image-preview div:hover{
-    border-radius: 50%;
-} */
-.image-preview div div:hover {
+.image-preview div  {
+
+}
+.image-preview div div  {
   border-radius: 50%;
 }
 
 .chat-description-container .details .chat-name {
   font-weight: bold;
   font-size: 1.5em;
-  /* border: 2px solid red; */
+  /* border: 2px solid red;/ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,4 +64,136 @@
   align-self: flex-start;
 
   /* padding: 0.1em; */
+}
+
+.chat-description-container .email{
+  text-align: center;
+}
+
+.group-members{
+  /* border: 2px solid red; */
+  padding-top: 1em;
+  padding-bottom: 1em;
+  height: 40%;
+  overflow-y: scroll;
+  transform: translateY(-100px); 
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0.6s;
+}
+.group-members.show{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.group-members .profile-cards{
+  /* border: 2px solid red; */
+  height: 5em;
+  /* margin-bottom: 1em; */
+  padding: 1em 1.5em;
+  cursor:auto;
+}
+.group-members .profile-images{
+  /* border: 2px solid red; */
+  padding-right: 0;
+  /* gap: 1em; */
+}
+.group-members .profile-details{
+  /* border: 2px solid red; */
+  line-height: 1.2;
+  margin-left: 0.8em;
+}
+.group-members .bio{
+  /* border: 2px solid red; */
+}
+.group-members .username{
+  /* border: 2px solid red; */
+}
+.group-members .btn-container{
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.group-members .tag{
+  /* border: 2px solid red; */
+  font-size: 0.7em;
+  line-height: 1;
+  width: max-content;
+  color: white;
+  padding: 0.2em 0.7em;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+.exit-group{
+  display: flex;
+  justify-content: center;
+  height: 10%;
+  align-items: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: var(--danger);
+  cursor: pointer;
+  transform: translateY(-100px); 
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0.65s;
+}
+.exit-group.show{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.exit-group:hover{
+  background-color: var(--grey-1);
+}
+.exit-group:active{
+  background-color: var(--grey-2);
+}
+.exit-group svg{
+  font-size: 1.5em;
+}
+
+.add-btn{
+  /* border: 2px solid red; */
+  height: 5em;
+  display: flex;
+  gap: 0.8em;
+  padding: 1em 2em;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.add-btn .profile-text{
+  font-size: 1.1em;
+}
+.add-btn:hover{
+  background-color: var(--grey-2);
+}
+.add-btn:active{
+  background-color: var(--grey-1);
+}
+.add-btn .profile-icon{
+  /* border: 2px solid red; */
+  height: 3.5em;
+  width: 3.5em;
+  background-color: var(--grey-4);
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-btn .profile-icon svg{
+  font-size: 2em;
+  /* color: var(--primary-light); */
+}
+.add-btn .profile-text{
+
 }
