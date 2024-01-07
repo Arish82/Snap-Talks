@@ -44,7 +44,7 @@ export default function MyChat(props) {
         setuserlogged(JSON.parse(localStorage.getItem("user")));
         fetchChats();
         // console.log(chats);
-    }, []);
+    }, [props.fetchAgain]);
 
     return (
         <>

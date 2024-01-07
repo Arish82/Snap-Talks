@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Image } from 'antd';
 import "./index.css";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -18,14 +18,11 @@ import Modal from "../../Components/Modal/index"
 export default function ProfileViewer(props) {
     const { user, selectedChat } = ChatState();
     const sender = getsender(user, selectedChat.users);
-    const [modal2Open, setModal2Open] = useState(false);
-
     const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
     const items = [
         {
             key: '1',
@@ -44,26 +41,20 @@ export default function ProfileViewer(props) {
             <div className={`${props.display} chat-description-container`}>
                 <div className="image-preview">
                     <Image
-                        style={{
-                            // width: "100%",
-                            objectFit: "cover",
-                            // border: "2px solid red"
-                        }}
                         width={200}
                         height={200}
                         src={selectedChat.isGroupChat ? selectedChat.pic : sender.pic}
-                    // src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                     />
                 </div>
                 <div className="details">
                     <div className="chat-name">
-                        {/* Md Arish */}
                         {selectedChat.isGroupChat ? selectedChat.chatName : sender.name}
-                        <EditRoundedIcon />
+                        <div className="edit-btn">
+                            <EditRoundedIcon />
+                        </div>
                     </div>
                     <div className="email">
                         {selectedChat.isGroupChat ? `Group . ${selectedChat.users.length} members` : sender.email}
-                        {/* arish123.ahamad@gmail.com */}
                     </div>
                 </div>
             </div>
@@ -74,9 +65,9 @@ export default function ProfileViewer(props) {
                         {
                             user._id === selectedChat.groupAdmin._id &&
                             <>
-                                <div className="add-btn" 
+                                <div className="add-btn"
                                     onClick={toggleModal}
-                                    // onClick={() => setModal2Open(true)} 
+                                // onClick={() => setModal2Open(true)} 
                                 >
                                     <div className="profile-icon squircles">
                                         <PersonAddAlt1RoundedIcon />
@@ -87,8 +78,8 @@ export default function ProfileViewer(props) {
                                     </div>
                                 </div>
                                 <div>
-                                {/* <button onClick={toggleModal}>Open Modal</button> */}
-                                
+                                    {/* <button onClick={toggleModal}>Open Modal</button> */}
+
                                 </div>
                                 {/* <Modal
                                     title="Add members in Group"

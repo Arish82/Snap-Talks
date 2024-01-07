@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
 import { MessageFilled } from "@ant-design/icons";
 import MailLockRoundedIcon from '@mui/icons-material/MailLockRounded';
+import BlankContainer from "../../Sections/Components/BlankContainer";
 
 function HomePage() {
   const [open, setOpen] = useState(false);
   const { user, selectedChat, setSelectedChat } = ChatState();
   const [selectedUsers, setselectedUsers] = useState([]);
-
+  const [fetchAgain, setfetchAgain] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
@@ -37,7 +38,7 @@ function HomePage() {
       {user && (
         <div className="main-container">
           <div className="sidebar border-end border-2" style={containerStyle}>
-            <ChatBox showDrawer={showDrawer} />
+            <ChatBox showDrawer={showDrawer} fetchAgain={fetchAgain} />
             <DrawerMenu
               open={open}
               selectedUsers={selectedUsers}
@@ -47,20 +48,10 @@ function HomePage() {
           </div>
           <div className="message-box scroller-container">
             {
-              selectedChat ? 
-              <MessageContainer />
-              :
-              <div className="message-container w-100 d-flex justify-content-center align-items-center flex-column fw-bold" style={{backgroundColor: "var(--primary-light)"}} >
-                <h1 className="fw-bold" >Join <span style={{color: "var(--primary)"}} >Snap</span>Talk
-                    <span>
-                        <MessageFilled style={{color: "var(--primary)"}} className="logo-icon" />
-                    </span> today<span style={{color: "var(--primary)"}}>!</span></h1>
-                <p>
-                <span  >
-                  {/* <MailLockRoundedIcon style={{fontSize: "1.2em"}}/> */}
-                </span>Connect, Chat, and Discover a New Era of Conversation.</p>
-                {/* Connect, Chat, and Discover a New Way to Communicate. */}
-              </div>
+              selectedChat ?
+                <MessageContainer fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
+                :
+                <BlankContainer />
             }
           </div>
         </div>

@@ -16,23 +16,23 @@ const colors = [
 const content = (
     <div className='color-container'>
         {
-            colors.map((e,key) => {
-                return (
-                    <div key={key} className='color-box squircles' style={{ backgroundColor: e }} ></div>
-                )
-            })
+            colors.map((e, key) => 
+            <div 
+                key={key} 
+                className='color-box squircles' 
+                style={{ backgroundColor: e }} 
+            >
+            </div>)
         }
     </div>
 );
 
-export default function MessageContainer() {
-    const [box1Width, setBox1Width] = useState("100%"); // Starting width of box 1
-    const [box2Width, setBox2Width] = useState("0%"); // Starting width of box 2
-
+export default function MessageContainer({fetchAgain, setfetchAgain}) {
+    const [box1Width, setBox1Width] = useState("100%");
+    const [box2Width, setBox2Width] = useState("0%");
     const handleButtonClick = () => {
-        // Decrease width of box 1 and increase width of box 2
-        setBox1Width(box1Width==="66%"?"100%":"66%"); // Decrease by 10px (adjust as needed)
-        setBox2Width(box2Width==="0%"?"33%":"0%"); // Increase by 10px (adjust as needed)
+        setBox1Width(box1Width === "66%" ? "100%" : "66%");
+        setBox2Width(box2Width === "0%" ? "33%" : "0%");
     };
 
     const [message, setmessage] = useState("")
@@ -88,8 +88,8 @@ export default function MessageContainer() {
                 </div>
             </div>
             <div className="border-start details-profile-container" style={{ width: `${box2Width}` }}>
-                <ProfileViewer handleButtonClick={handleButtonClick} display={box1Width==="100%"?"": "show"} />
+                <ProfileViewer handleButtonClick={handleButtonClick} display={box1Width === "100%" ? "" : "show"} />
             </div>
-        </> 
+        </>
     )
 }

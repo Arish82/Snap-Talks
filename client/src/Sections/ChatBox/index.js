@@ -60,6 +60,7 @@ export default function ChatBox(props) {
                 handleCloseSearch={handleCloseSearch}
                 searchResult={searchResult}
                 searchTime={searchTime}
+                fetchAgain={props.fetchAgain}
             />
         </>
     );
