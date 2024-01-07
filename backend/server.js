@@ -11,6 +11,7 @@ const PORT=process.env.PORT;
 // Importing router 
 const userRoutes = require('./routes/userRoutes.js');
 const chatRoutes = require('./routes/chatRoutes.js');
+const messageRoutes = require('./routes/messageRoutes.js');
 
 // connecting db.js
 require('./config/db')
@@ -19,6 +20,7 @@ require('./config/db')
 app.use(express.json());
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes)
+app.use('/api/message',messageRoutes)
 
 app.get("/",(req,res)=>{
     res.send("Hello World!");

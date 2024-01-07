@@ -5,8 +5,7 @@ const bcrypt = require('bcryptjs');
 
 const registerUser = asyncHandler( async (req,res)=>{
     const {name, email, password, pic} = req.body;
-    console.log(req.body);
-    // checking all required fields
+    
     if(!name || !email || !password) {
         res.status(422).json({message: 'Please enter all feilds', status: 422});
         throw new Error('Please enter all feilds')

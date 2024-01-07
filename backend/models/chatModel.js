@@ -26,7 +26,6 @@ const chatModel = mongoose.Schema(
         },
         pic: {
             type: String,
-            required: true,
             default: "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
         }
     },
