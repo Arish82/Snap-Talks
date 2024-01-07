@@ -7,8 +7,10 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
 import "./index.css";
 import EachMessageBoxContainer from '../EachMessageBoxContainer';
+import { convertTimestampToTime } from '../../config/ChatLogic';
 
 export default function AllChatSet(props) {
+    console.log();
     return (
         <>
             <div className={`${props.sender}-chats all-chats-set`}>
@@ -21,10 +23,17 @@ export default function AllChatSet(props) {
                     <div className="user-details">
                         <div className="user-name">{props.username}</div>
                     </div>
-                    <EachMessageBoxContainer message={"This is Arish from IIIT Bhopal"} time={"2:47 am"} />
-                    <EachMessageBoxContainer message={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus corrupti accusantium harum dolorum, quas odit consequatur ipsum nisi doloribus placeat ea, tenetur laboriosam illum magnam expedita ratione! Rem, fugit maxime?"} time={"2:47 am"} />
+                    {
+                        props.setMessage && props.setMessage.map((eachmessage)=>{
+                            console.log(typeof eachmessage.content);
+                            return(
+                                <EachMessageBoxContainer message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
+                            )
+                        })
+                    }
+                    {/* <EachMessageBoxContainer message={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus corrupti accusantium harum dolorum, quas odit consequatur ipsum nisi doloribus placeat ea, tenetur laboriosam illum magnam expedita ratione! Rem, fugit maxime?"} time={"2:47 am"} />
                     <EachMessageBoxContainer message={"Are you serious?"} time={"2:47 am"} />
-                    <EachMessageBoxContainer message={"Hi, Arish this side!"} time={"2:47 am"} />
+                    <EachMessageBoxContainer message={"Hi, Arish this side!"} time={"2:47 am"} /> */}
                 </div>
             </div>
         </>

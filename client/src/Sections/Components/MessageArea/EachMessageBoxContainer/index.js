@@ -3,6 +3,7 @@ import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
 import "./index.css";
+import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 
 export default function EachMessageBoxContainer(props) {
     return (

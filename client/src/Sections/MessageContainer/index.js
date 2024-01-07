@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./index.css"
 import ProfileImage from '../Components/UserAvatar'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -41,7 +41,6 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
         setBox2Width(box2Width === "0%" ? "33%" : "0%");
     };
     const handleSendMessage= async(e)=>{
-        // e.preventDefault();
         try{
             const config={
                 headers: {
@@ -56,12 +55,38 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                 chatId: selectedChat._id
             }, config);
             setallMessages([...allMessages,data]);
-            console.log(data);
+            setfetchAgain(!fetchAgain)
+            // console.log(data);
         }catch(err){
             console.log(err);
             openMessage("error-message","error","Message not sent!");
         }
     }
+    const fetchMessages = async()=>{
+
+        if(!selectedChat) return;
+
+        try{
+            const config={
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            };
+
+            const {data} = await axios.get(`/api/message/${selectedChat._id}`,config);
+            setallMessages(data);
+            // console.log(data);
+        }
+        catch(err){
+            console.log(err);
+            openMessage("key","error","Failed to fetch messages");
+        }
+    }
+    useEffect(() => {
+      fetchMessages();
+    }, [selectedChat])
+    
     const handletyping = (e) => {
         if(e.target.value!=="\n")
             setmessage(e.target.value)
@@ -94,7 +119,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                 </div>
 
                 <div className="chat-body">
-                    <MessageArea />
+                    <MessageArea allMessages={allMessages} />
                 </div>
                 <div className="chat-footer ">
                     <div className="chat-icons">
