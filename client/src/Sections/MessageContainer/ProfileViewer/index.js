@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image } from 'antd';
 import "./index.css";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -10,16 +10,17 @@ import { Dropdown } from 'antd';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
-import { Avatar } from 'antd';
-import { UserAddOutlined } from '@ant-design/icons';
-// import { Button, Modal } from 'antd';
 import Modal from "../../Components/Modal/index"
+import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
+import axios from 'axios';
 
 export default function ProfileViewer(props) {
-    const { user, selectedChat } = ChatState();
+    const { user, selectedChat, setSelectedChat } = ChatState();
     const sender = getsender(user, selectedChat.users);
     const [showModal, setShowModal] = useState(false);
-
+    const [groupName, setgroupName] = useState("")
+    const [clickEdit, setclickEdit] = useState(false)
+    
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -33,6 +34,27 @@ export default function ProfileViewer(props) {
             label: <div>Remove</div>,
         }
     ];
+    const handleGroupNameChange= async(e)=>{
+        e && e.preventDefault();
+        if(!groupName) return;
+
+        try{
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            const { data } = await axios.put("/api/chat/rename", { 
+                chatId: selectedChat._id,
+                chatName: groupName
+             }, config);
+             setSelectedChat(data);
+             props.setfetchAgain(!props.fetchAgain)
+        }catch(err){
+            console.log(err);
+        }
+    }
     return (
         <>
             <div onClick={props.handleButtonClick} className='closing' >
@@ -41,18 +63,46 @@ export default function ProfileViewer(props) {
             <div className={`${props.display} chat-description-container`}>
                 <div className="image-preview">
                     <Image
+                        style={{objectFit: "cover"}}
                         width={200}
                         height={200}
                         src={selectedChat.isGroupChat ? selectedChat.pic : sender.pic}
                     />
                 </div>
                 <div className="details">
-                    <div className="chat-name">
-                        {selectedChat.isGroupChat ? selectedChat.chatName : sender.name}
-                        <div className="edit-btn">
-                            <EditRoundedIcon />
-                        </div>
-                    </div>
+                    <form onSubmit={handleGroupNameChange} className="chat-name">
+                        {
+                            selectedChat.isGroupChat?
+                            <>
+                                {
+                                    clickEdit ?
+                                    <>
+                                        <input id="editGroupName" value={groupName} onChange={(e)=>{setgroupName(e.target.value)}} className="chat-name-text"/>
+                                        <div onClick={()=> {
+                                            setclickEdit(false);
+                                            handleGroupNameChange();
+                                        }} className="edit-btn">
+                                            <DoneOutlineRoundedIcon  />
+                                        </div>
+                                    </>:
+                                    <>
+                                        {selectedChat.chatName}
+                                        <label htmlFor='editGroupName' 
+                                            className="edit-btn" 
+                                            onClick={()=> {
+                                                setclickEdit(true);
+                                                setgroupName(selectedChat.chatName)
+                                            }} >
+                                            <EditRoundedIcon />
+                                        </label>
+                                    </>
+
+                                }
+                            </>
+                            :
+                            sender.name
+                        }   	
+                    </form>
                     <div className="email">
                         {selectedChat.isGroupChat ? `Group . ${selectedChat.users.length} members` : sender.email}
                     </div>
@@ -67,31 +117,16 @@ export default function ProfileViewer(props) {
                             <>
                                 <div className="add-btn"
                                     onClick={toggleModal}
-                                // onClick={() => setModal2Open(true)} 
                                 >
                                     <div className="profile-icon squircles">
                                         <PersonAddAlt1RoundedIcon />
-                                        {/* <Avatar  icon={<PersonAddAlt1RoundedIcon/>} /> */}
                                     </div>
                                     <div className="profile-text">
                                         Add members
                                     </div>
                                 </div>
                                 <div>
-                                    {/* <button onClick={toggleModal}>Open Modal</button> */}
-
                                 </div>
-                                {/* <Modal
-                                    title="Add members in Group"
-                                    centered
-                                    open={modal2Open}
-                                    onOk={() => setModal2Open(false)}
-                                    onCancel={() => setModal2Open(false)}
-                                >
-                                    <p>some contents...</p>
-                                    <p>some contents...</p>
-                                    <p>some contents...</p>
-                                </Modal> */}
                             </>
                         }
                         {

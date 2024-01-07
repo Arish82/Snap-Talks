@@ -18,7 +18,7 @@ export default function MyChat(props) {
                 }
             }
             const { data } = await axios.post("/api/chat", { userId }, config);
-            console.log(data, "Arish");
+            // console.log(data, "Arish");
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
 
             setSelectedChat(data);

@@ -88,7 +88,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                 </div>
             </div>
             <div className="border-start details-profile-container" style={{ width: `${box2Width}` }}>
-                <ProfileViewer handleButtonClick={handleButtonClick} display={box1Width === "100%" ? "" : "show"} />
+                <ProfileViewer fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} handleButtonClick={handleButtonClick} display={box1Width === "100%" ? "" : "show"} />
             </div>
         </>
     )

@@ -2,7 +2,8 @@
 .profile-cards {
   width: 95%;
   margin: auto;
-  height: 16.5%;
+  padding: 0.9em 0em;
+  /* height: 16.5%; */
   display: flex;
   border-radius: 1.5em;
   flex-direction: row;

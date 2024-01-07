@@ -1,5 +1,4 @@
 .closing{
-    /* border: 2px solid red; */
     height: 10%;
     display: flex;
     align-items: center;
@@ -10,17 +9,12 @@
     font-size: 2em;
 }
 .chat-description-container {
-  /* border: 2px solid red;  */
   height: 40%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1em;
-  /* display: none; */
-  /* transition: width 5s ease; */
-  /* transition: display 2s ease; */
   transform: translateY(-100px); 
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 0;
@@ -36,12 +30,8 @@
 .chat-description-container .image-preview {
   border-radius: 50%;
 }
-
 .image-preview img {
   border-radius: 50%;
-}
-.image-preview div  {
-
 }
 .image-preview div div  {
   border-radius: 50%;
@@ -50,11 +40,30 @@
 .chat-description-container .details .chat-name {
   font-weight: bold;
   font-size: 1.5em;
-  /* border: 2px solid red;/ */
+  /* border: 2px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
+  line-height: 1;
   gap: 0.3em;
+  height: 2em;
+}
+.chat-description-container .details .chat-name .edit-btn{
+  cursor: pointer; 
+}
+.chat-description-container .details .chat-name-text{
+  border: none;
+  outline: none;  
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid;
+  /* text-align: center; */
+  /* border: 2px solid red; */
+  width: 50%;
+  font-weight: bold;
+}
+.chat-description-container .details .chat-name-text input{
 }
 
 .chat-description-container .chat-name svg {
