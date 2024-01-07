@@ -20,56 +20,66 @@ export default function ProfileViewer(props) {
     const [showModal, setShowModal] = useState(false);
     const [groupName, setgroupName] = useState("")
     const [clickEdit, setclickEdit] = useState(false)
-    
+
     const toggleModal = () => {
         setShowModal(!showModal);
     };
-    const items = [
-        {
-            key: '1',
-            label: <div>Make Group Admin</div>,
-        },
-        {
-            key: '2',
-            label: <div>Remove</div>,
-        }
-    ];
-    const handleGroupNameChange= async(e)=>{
-        e && e.preventDefault();
-        if(!groupName) return;
 
-        try{
+    const handleGroupNameChange = async (e) => {
+        e && e.preventDefault();
+        if (!groupName) return;
+
+        try {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.put("/api/chat/rename", { 
+            const { data } = await axios.put("/api/chat/rename", {
                 chatId: selectedChat._id,
                 chatName: groupName
-             }, config);
-             setSelectedChat(data);
-             props.setfetchAgain(!props.fetchAgain)
-        }catch(err){
+            }, config);
+            setSelectedChat(data);
+            props.setfetchAgain(!props.fetchAgain)
+        } catch (err) {
             console.log(err);
         }
     }
-    const handleGroupLeave= async()=>{
-        try{
+    const handleGroupLeave = async () => {
+        try {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.put("/api/chat/remove", { 
+            const { data } = await axios.put("/api/chat/remove", {
                 chatId: selectedChat._id,
                 userId: user._id
-             }, config);
-             setSelectedChat("");
-             props.setfetchAgain(!props.fetchAgain)
-        }catch(err){
+            }, config);
+            setSelectedChat("");
+            props.setfetchAgain(!props.fetchAgain)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    const handleGroupRemove = async (userId) => {
+        if(user._id!==selectedChat.groupAdmin._id) return;
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            const { data } = await axios.put("/api/chat/remove", {
+                chatId: selectedChat._id,
+                userId: userId
+            }, config);
+            setSelectedChat(data);
+            props.setfetchAgain(!props.fetchAgain)
+        } catch (err) {
             console.log(err);
         }
     }
@@ -81,7 +91,7 @@ export default function ProfileViewer(props) {
             <div className={`${props.display} chat-description-container`}>
                 <div className="image-preview">
                     <Image
-                        style={{objectFit: "cover"}}
+                        style={{ objectFit: "cover" }}
                         width={200}
                         height={200}
                         src={selectedChat.isGroupChat ? selectedChat.pic : sender.pic}
@@ -90,36 +100,36 @@ export default function ProfileViewer(props) {
                 <div className="details">
                     <form onSubmit={handleGroupNameChange} className="chat-name">
                         {
-                            selectedChat.isGroupChat?
-                            <>
-                                {
-                                    clickEdit ?
-                                    <>
-                                        <input id="editGroupName" value={groupName} onChange={(e)=>{setgroupName(e.target.value)}} className="chat-name-text"/>
-                                        <div onClick={()=> {
-                                            setclickEdit(false);
-                                            handleGroupNameChange();
-                                        }} className="edit-btn">
-                                            <DoneOutlineRoundedIcon  />
-                                        </div>
-                                    </>:
-                                    <>
-                                        {selectedChat.chatName}
-                                        <label htmlFor='editGroupName' 
-                                            className="edit-btn" 
-                                            onClick={()=> {
-                                                setclickEdit(true);
-                                                setgroupName(selectedChat.chatName)
-                                            }} >
-                                            <EditRoundedIcon />
-                                        </label>
-                                    </>
+                            selectedChat.isGroupChat ?
+                                <>
+                                    {
+                                        clickEdit ?
+                                            <>
+                                                <input id="editGroupName" value={groupName} onChange={(e) => { setgroupName(e.target.value) }} className="chat-name-text" />
+                                                <div onClick={() => {
+                                                    setclickEdit(false);
+                                                    handleGroupNameChange();
+                                                }} className="edit-btn">
+                                                    <DoneOutlineRoundedIcon />
+                                                </div>
+                                            </> :
+                                            <>
+                                                {selectedChat.chatName}
+                                                <label htmlFor='editGroupName'
+                                                    className="edit-btn"
+                                                    onClick={() => {
+                                                        setclickEdit(true);
+                                                        setgroupName(selectedChat.chatName)
+                                                    }} >
+                                                    <EditRoundedIcon />
+                                                </label>
+                                            </>
 
-                                }
-                            </>
-                            :
-                            sender.name
-                        }   	
+                                    }
+                                </>
+                                :
+                                sender.name
+                        }
                     </form>
                     <div className="email">
                         {selectedChat.isGroupChat ? `Group . ${selectedChat.users.length} members` : sender.email}
@@ -149,7 +159,20 @@ export default function ProfileViewer(props) {
                         }
                         {
                             selectedChat.users.map((chat) => {
-
+                                const items = [
+                                    {
+                                        key: '1',
+                                        label: user._id===selectedChat.groupAdmin._id?<div>Make Group Admin</div>: <></>,
+                                    },
+                                    {
+                                        key: '2',
+                                        label: user._id===selectedChat.groupAdmin._id?<div onClick={()=>handleGroupRemove(chat._id)} >Remove</div>:<></>,
+                                    },
+                                    {
+                                        key: '3',
+                                        label: <div disabled>Verify Security Code</div>
+                                    }
+                                ];
                                 return (
                                     <ChatCard
                                         url={chat.pic}
@@ -162,6 +185,7 @@ export default function ProfileViewer(props) {
                                                     chat._id === selectedChat.groupAdmin._id &&
                                                     <div className='tag' >Group Admin</div>
                                                 }
+                                                    {/* (user._id===selectedChat.groupAdmin._id ) &&  */}
                                                 {
                                                     selectedChat.groupAdmin._id !== chat._id &&
                                                     <Dropdown menu={{ items }} placement="bottomRight" arrow>

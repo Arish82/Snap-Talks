@@ -100,7 +100,7 @@
   /* border: 2px solid red; */
   height: 5em;
   /* margin-bottom: 1em; */
-  padding: 1em 1.5em;
+  padding: 1em 1.2em;
   cursor:auto;
 }
 .group-members .profile-images{
@@ -121,6 +121,8 @@
 }
 .group-members .btn-container{
   /* border: 2px solid red; */
+  /* position: absolute; */
+  /* right: 2em; */
   display: flex;
   flex-direction: column;
   line-height: 1;
