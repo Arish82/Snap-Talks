@@ -202,7 +202,7 @@ export default function ProfileViewer(props) {
                     <div onClick={handleGroupLeave} className={`exit-group ${props.display}`}>
                         <LogoutRoundedIcon /> Exit Group
                     </div>
-                    {showModal && <Modal onClose={toggleModal} />}
+                    {showModal && <Modal fetchAgain={props.fetchAgain} setfetchAgain={props.setfetchAgain} onClose={toggleModal} />}
                 </>
             }
         </>
