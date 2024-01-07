@@ -9,12 +9,14 @@ import { MessageFilled } from "@ant-design/icons";
 import MailLockRoundedIcon from '@mui/icons-material/MailLockRounded';
 import BlankContainer from "../../Sections/Components/BlankContainer";
 
+
 function HomePage() {
   const [open, setOpen] = useState(false);
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const { user, selectedChat, setSelectedChat, messageApi, contextHolder } = ChatState();
   const [selectedUsers, setselectedUsers] = useState([]);
   const [fetchAgain, setfetchAgain] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
     if (!userInfo) {
@@ -35,6 +37,7 @@ function HomePage() {
   };
   return (
     <>
+      {contextHolder}
       {user && (
         <div className="main-container">
           <div className="sidebar border-end border-2" style={containerStyle}>

@@ -15,7 +15,7 @@ import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
 import axios from 'axios';
 
 export default function ProfileViewer(props) {
-    const { user, selectedChat, setSelectedChat } = ChatState();
+    const { user, selectedChat, setSelectedChat, openMessage } = ChatState();
     const sender = getsender(user, selectedChat.users);
     const [showModal, setShowModal] = useState(false);
     const [groupName, setgroupName] = useState("")
@@ -28,7 +28,7 @@ export default function ProfileViewer(props) {
     const handleGroupNameChange = async (e) => {
         e && e.preventDefault();
         if (!groupName) return;
-
+        openMessage("change","loading","⏳ Gearing Up for a Name Transformation... Hold Tight!");
         try {
             const config = {
                 headers: {
@@ -40,13 +40,16 @@ export default function ProfileViewer(props) {
                 chatId: selectedChat._id,
                 chatName: groupName
             }, config);
+            openMessage("change","success","🎉 New Group Name Alert: Out With the Old, In With the New! 🎉");
             setSelectedChat(data);
             props.setfetchAgain(!props.fetchAgain)
         } catch (err) {
             console.log(err);
+            openMessage("change","error","⚠️ Oops! Failed to Give the Group a Makeover!");
         }
     }
     const handleGroupLeave = async () => {
+        openMessage("leaving","loading","🌀 Oops! Stuck in the Group Hug Zone!");
         try {
             const config = {
                 headers: {
@@ -60,12 +63,15 @@ export default function ProfileViewer(props) {
             }, config);
             setSelectedChat("");
             props.setfetchAgain(!props.fetchAgain)
+            openMessage("leaving","success","🚪 Sad to See You Go! You've Left the Group.");
         } catch (err) {
             console.log(err);
+            openMessage("leaving","error","⚠️ Oops! Couldn't Bid Farewell to the Group.");
         }
     }
     const handleGroupRemove = async (userId) => {
         if(user._id!==selectedChat.groupAdmin._id) return;
+        openMessage("remove","loading","🌀 Oops! Stuck in the Group Hug Zone!");
         try {
             const config = {
                 headers: {
@@ -77,10 +83,12 @@ export default function ProfileViewer(props) {
                 chatId: selectedChat._id,
                 userId: userId
             }, config);
+            openMessage("remove","success",`🎉 Ta-da! User Has Been Successfully Removed from the Group. Less is More, Right? 🚀`);
             setSelectedChat(data);
             props.setfetchAgain(!props.fetchAgain)
         } catch (err) {
             console.log(err);
+            openMessage("remove","error","⚠️ Oops! Ta-da Turned into Na-na. Couldn't Remove User from the Group! 😅");
         }
     }
     return (
