@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Dropdown } from 'antd';
@@ -8,8 +8,21 @@ import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
 import "./index.css";
 import EachMessageBoxContainer from '../EachMessageBoxContainer';
 import { convertTimestampToTime } from '../../config/ChatLogic';
+import io from "socket.io-client"
+import { ChatState } from '../../../../Context/ChatProvider';
+// const ENDPOINT = "http://localhost:5000"
+// var socket;
 
 export default function AllChatSet(props) {
+    // const {user} = ChatState();
+    // const [socketConnected, setSocketConnected] = useState(false)
+    // useEffect(() => {
+    //   socket = io(ENDPOINT);
+    //   socket.emit("setup", user);
+    //   socket.on("connection", ()=>{
+    //     setSocketConnected(true)
+    //   })
+    // }, [])
     
     return (
         <>
@@ -25,7 +38,6 @@ export default function AllChatSet(props) {
                     </div>
                     {
                         props.setMessage && props.setMessage.map((eachmessage)=>{
-                            console.log(typeof eachmessage.content);
                             return(
                                 <EachMessageBoxContainer message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
                             )
