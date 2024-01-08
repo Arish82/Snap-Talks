@@ -34,19 +34,21 @@ const content = (
 );
 
 export default function MessageContainer({fetchAgain, setfetchAgain}) {
-    const {user, selectedChat, openMessage} = ChatState();
+    const {user, selectedChat, openMessage, typing, settyping, istyping, setistyping} = ChatState();
     const [message, setmessage] = useState("")
     const [allMessages, setallMessages] = useState([]);
     const [box1Width, setBox1Width] = useState("100%");
     const [box2Width, setBox2Width] = useState("0%");
     const [socketConnected, setSocketConnected] = useState(false)
-    
+
     useEffect(() => {
       socket = io(ENDPOINT);
       socket.emit("setup", user);
-      socket.on("connection", ()=>{
+      socket.on("connected", ()=>{
         setSocketConnected(true)
       })
+      socket.on("typing",()=> setistyping(true))
+      socket.on("stop typing", ()=> setistyping(false))
     }, [])
 
     const handleButtonClick = () => {
@@ -54,6 +56,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
         setBox2Width(box2Width === "0%" ? "33%" : "0%");
     };
     const handleSendMessage= async(e)=>{
+        socket.emit("stop typing", selectedChat._id);
         try{
             const config={
                 headers: {
@@ -119,6 +122,24 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
     const handletyping = (e) => {
         if(e.target.value!=="\n")
             setmessage(e.target.value)
+
+        if(!socketConnected) return;
+        if(!typing) {
+            settyping(true);
+            socket.emit("typing", selectedChat._id);
+        }
+
+        let lastTypingTime = new Date().getTime();
+        
+        setTimeout(() => {
+            var timeNow = new Date().getTime();
+            var timeDiff = timeNow - lastTypingTime;
+
+            if(timeDiff >= 3000 && typing) {
+                socket.emit("stop typing", selectedChat._id);
+                settyping(false);
+            }
+        }, 3000);
     }
     const props = {
         chatName: "User Name",
@@ -136,7 +157,8 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                                 {selectedChat.isGroupChat?selectedChat.chatName:getsender(user,selectedChat.users).name}
                             </div>
                             <div className="status">
-                                {props.status}
+                                {istyping ? "typing..." : props.status}
+
                             </div>
                         </div>
                     </div>

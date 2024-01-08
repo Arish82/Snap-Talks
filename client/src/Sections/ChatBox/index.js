@@ -10,7 +10,7 @@ import axios from "axios";
 import { ChatState } from "../../Context/ChatProvider";
 
 export default function ChatBox(props) {
-    const { user } = ChatState();
+    const { user} = ChatState();
     const [searchUser, setSearchUser] = useState("");
     const [searchResult, setsearchResult] = useState([]);
     const [searchTime, setsearchTime] = useState(false);
