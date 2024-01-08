@@ -15,7 +15,7 @@ export default function EachMessageBoxContainer(props) {
                     </p>
                     <div className="message-likes-time">
                         <div className="likes">
-                            ❤️😂
+                            {/* ❤️😂 */}
                         </div>
                         <div className="time">
                             <span>

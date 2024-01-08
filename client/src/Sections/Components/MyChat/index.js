@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./index.css"
-import { getsender } from '../config/ChatLogic';
+import { convertTimestampToTime, getsender } from '../config/ChatLogic';
 import ChatCard from '../ChatCard';
 import axios from 'axios';
 import { ChatState } from '../../../Context/ChatProvider';
@@ -71,15 +71,19 @@ export default function MyChat(props) {
                     (!props.searchTime) &&
                     chats && chats.map((chat,key) => {
                         const sender = getsender(userlogged, chat.users);
+                        console.log(chat.latestMessage);
                         return (
                             <ChatCard
                                 key={key}
                                 active={chat === selectedChat ? `active-holder` : "hovering"}
                                 onClickFunc={() => setSelectedChat(chat)}
                                 chatname={!chat.isGroupChat ? sender.name : chat.chatName}
-                                timestamp={"12:34 PM"}
+                                timestamp={convertTimestampToTime(chat.latestMessage ? chat.latestMessage.updatedAt: chat.updatedAt)}
                                 url={chat.isGroupChat?chat.pic:sender.pic}
-                                latestMessage={"Small message regarding the user..."}
+                                latestMessage={
+                                    chat.latestMessage ? 
+                                    (chat.latestMessage.sender.name +": "+ chat.latestMessage.content).substring(0,35) + ((chat.latestMessage.sender.name +": "+ chat.latestMessage.content).length>=35?"...":"")
+                                    :"Hey, here I'm using SnapTalk!🙂"}
                                 unread={0}
                                 typing={false}
                             />

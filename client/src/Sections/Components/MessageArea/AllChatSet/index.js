@@ -10,7 +10,7 @@ import EachMessageBoxContainer from '../EachMessageBoxContainer';
 import { convertTimestampToTime } from '../../config/ChatLogic';
 
 export default function AllChatSet(props) {
-    console.log();
+    
     return (
         <>
             <div className={`${props.sender}-chats all-chats-set`}>

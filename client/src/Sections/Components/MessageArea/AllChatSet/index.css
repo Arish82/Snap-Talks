@@ -1,16 +1,19 @@
 /* All the sets of messages */
 .all-chats-set {
-  /* width: 80%; */
+  /* width: fit-content; */
   display: flex;
   gap: 0.6em;
 }
 
 .left-chats {
+  /* border: 2px solid ; */
   flex-direction: row;
 }
 .right-chats {
+  /* border: 2px solid blue; */
   align-self: flex-end;
   flex-direction: row-reverse;
+  width: 100%;
 }
 
 /* Profile Pic attached with Messages */
@@ -28,11 +31,11 @@
 
 /* All the message content */
 .message-content {
-  /* width: 80%; */
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 0.15em;
-  /* border: 2px solid blue; */
+  /* border: 2px solid red; */
 }
 .message-content .user-details {
   display: flex;
@@ -53,6 +56,7 @@
 
 .message-content p {
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .each-message-box-container {

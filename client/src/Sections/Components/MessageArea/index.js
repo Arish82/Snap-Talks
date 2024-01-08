@@ -41,7 +41,7 @@ export default function MessageArea({allMessages}) {
     const {user} = ChatState();
     groupConsecutive(allMessages)
     var url = "https://t4.ftcdn.net/jpg/06/45/98/67/360_F_645986787_Vi2gX4riQy9d147RrU3rYfapkEKxMw9Z.jpg";
-    return (
+    return ( 
         <>
             <div className="scrollable-div scroller-design">
                 <div className="scrollable-content">
