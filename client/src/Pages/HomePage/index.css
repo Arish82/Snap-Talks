@@ -20,3 +20,43 @@ body {
   display: flex;
 }
 
+@media only screen and (max-width: 600px) {
+  .main-container{
+    height: 92.5vh;
+  }
+  .sidebar {
+    width: 0%;
+  }
+  .message-box {
+    width: 0%;
+  }
+  .showing-sm{
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 679px) {
+  .sidebar {
+    width: 45%;
+  }
+  .message-box {
+    width: 55%;
+  }
+}
+@media only screen and (min-width: 680px) and (max-width: 1024px) {
+  .sidebar {
+    width: 43%;
+  }
+  .message-box {
+    width: 57%;
+  }
+}
+
+    @media only screen and (min-width: 1025px) and (max-width: 1280px) {
+      .sidebar {
+        width: 33%;
+      }
+      .message-box {
+        width: 67%;
+      }
+    }

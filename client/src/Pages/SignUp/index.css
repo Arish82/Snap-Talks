@@ -3,7 +3,8 @@
 }
 
 .signup-container{
-    width: 30%;
+    /* width: 30%; */
+    width: max(340px,40%);
     padding: 3.7em 3em;
     border-radius: 2em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -16,4 +17,10 @@
 .links-container span{
     font-size: smaller;
 }
+
+@media only screen and (min-width: 1201px) {
+    .signup-container{
+        width: 35%;
+    }
+  }
 

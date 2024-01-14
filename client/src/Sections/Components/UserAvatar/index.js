@@ -23,7 +23,7 @@ export default function UserAvatar(props) {
                         height: props.height,
                         ...props.style
                     }}
-                    className="squircles"
+                    className="squircles profile-pic-cont"
                 >
                     <img src={props.src} alt={props.alt} />
                 </div>

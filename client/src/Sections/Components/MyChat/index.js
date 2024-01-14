@@ -23,6 +23,7 @@ export default function MyChat(props) {
 
             setSelectedChat(data);
             props.handleCloseSearch();
+            props.showSingleChat();
         } catch (err) {
             console.log(err);
         }
@@ -76,7 +77,10 @@ export default function MyChat(props) {
                             <ChatCard
                                 key={key}
                                 active={chat === selectedChat ? `active-holder` : "hovering"}
-                                onClickFunc={() => setSelectedChat(chat)}
+                                onClickFunc={() => {
+                                    setSelectedChat(chat)
+                                    props.showSingleChat();
+                                }}
                                 chatname={!chat.isGroupChat ? sender.name : chat.chatName}
                                 timestamp={convertTimestampToTime(chat.latestMessage ? chat.latestMessage.updatedAt: chat.updatedAt)}
                                 url={chat.isGroupChat?chat.pic:sender.pic}

@@ -84,7 +84,7 @@ function DrawerMenu(props) {
                             />
                         </div>
 
-                        <div className="groupchat-creater-profile-container scroller-container">
+                        <div className="drawer-container groupchat-creater-profile-container scroller-container">
 
                                 {/* searchTime && */}
                             {
@@ -93,7 +93,7 @@ function DrawerMenu(props) {
                                     if(props.selectedUsers.find(e=>e._id===chat._id)) return(<></>)
                                     return (
                                         <ChatCard
-                                            style={{ height: "20%" }}
+                                            // style={{ height: "20%" }}
                                             active="hovering"
                                             key={chat._id}
                                             _id={chat._id}
@@ -112,8 +112,8 @@ function DrawerMenu(props) {
                         </div>
                     </div>
                 }
-                <div className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
-                    <button disabled={props.selectedUsers.length<1} className='squircles' onClick={()=> setopen(true)} >
+                <div onClick={()=> setopen(true)} className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
+                    <button disabled={props.selectedUsers.length<1} className='squircles'>
                         <ArrowForwardRoundedIcon />
                     </button>
                 </div>

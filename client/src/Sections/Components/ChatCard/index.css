@@ -54,10 +54,11 @@
 
 .profile-details .username{
   font-weight: bold;
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 1.13em;
 }
 .profile-details .timestamp{
-  font-size: 12px;
+  font-size: 0.75em;
   color: var(--grey-5);
 }
 
@@ -67,15 +68,22 @@
 }
 
 .lower-row .bio{
-  font-size: 14px;
+  font-size: 0.86em;
   color: var(--grey-5);
 }
 
 .badge-container{
   font-size: 20px;
+  font-size: 1.2em;
   display: flex;
   align-items: center;
 }
 .badge-container svg{
   font-size: 1em;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 679px) {
+  .profile-details{
+    margin-left: 0.5em;
+  }
 }

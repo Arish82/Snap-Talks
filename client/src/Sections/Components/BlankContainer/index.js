@@ -1,10 +1,11 @@
 import React from 'react'
 import { MessageFilled } from "@ant-design/icons";
+import "./index.css";
 
 export default function BlankContainer() {
     return (
         <>
-            <div className="message-container w-100 d-flex justify-content-center align-items-center flex-column fw-bold" style={{ backgroundColor: "var(--primary-light)" }} >
+            <div className="message-container blank-container" style={{ backgroundColor: "var(--primary-light)" }} >
                 <h1 className="fw-bold" >Join <span style={{ color: "var(--primary)" }} >Snap</span>Talk
                     <span>
                         <MessageFilled style={{ color: "var(--primary)" }} className="logo-icon" />

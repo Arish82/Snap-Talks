@@ -11,6 +11,7 @@ import MessageArea from '../Components/MessageArea';
 import ProfileViewer from './ProfileViewer';
 import { ChatState } from '../../Context/ChatProvider';
 import { getsender } from '../Components/config/ChatLogic';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import axios from 'axios';
 import io from "socket.io-client"
 const ENDPOINT = "http://localhost:5000"
@@ -33,12 +34,14 @@ const content = (
     </div>
 );
 
-export default function MessageContainer({fetchAgain, setfetchAgain}) {
+export default function MessageContainer({fetchAgain, setfetchAgain, closeSingleChat}) {
     const {user, selectedChat, openMessage, typing, settyping, istyping, setistyping} = ChatState();
     const [message, setmessage] = useState("")
     const [allMessages, setallMessages] = useState([]);
-    const [box1Width, setBox1Width] = useState("100%");
-    const [box2Width, setBox2Width] = useState("0%");
+    // const [box1Width, setBox1Width] = useState("100%");
+    // const [box2Width, setBox2Width] = useState("0%");
+    const [openBox1, setopenBox1] = useState("close-1");
+    const [openBox2, setopenBox2] = useState("close-2");
     const [socketConnected, setSocketConnected] = useState(false)
 
     useEffect(() => {
@@ -52,8 +55,10 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
     }, [])
 
     const handleButtonClick = () => {
-        setBox1Width(box1Width === "66%" ? "100%" : "66%");
-        setBox2Width(box2Width === "0%" ? "33%" : "0%");
+        // setBox1Width(box1Width === "66%" ? "100%" : "66%");
+        // setBox2Width(box2Width === "0%" ? "33%" : "0%");
+        setopenBox1(openBox1 === "open-box-1" ? "close-1" : "open-box-1");
+        setopenBox2(openBox2 === "open-box-2" ? "close-2" : "open-box-2");
     };
     const handleSendMessage= async(e)=>{
         socket.emit("stop typing", selectedChat._id);
@@ -148,8 +153,15 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
     
     return (
         <>
-            <div className="message-container" style={{ width: `${box1Width}` }} >
+            <div className={`message-container ${openBox1}`} 
+            // style={{ width: `${box1Width}` }} 
+            >
                 <div className="chat-header ">
+                    <div onClick={closeSingleChat} style={{cursor: 'pointer'}} className="back-btn squircles">
+                        <div className='squircles' >
+                            <ArrowBackRoundedIcon />
+                        </div>
+                    </div>
                     <div onClick={handleButtonClick} className="details d-flex align-items-center">
                         <ProfileImage style={{ height: "3.6em", width: "3.6em" }} src={selectedChat.isGroupChat?selectedChat.pic:getsender(user,selectedChat.users).pic} />
                         <div className="chat-details">
@@ -203,8 +215,14 @@ export default function MessageContainer({fetchAgain, setfetchAgain}) {
                     </div>
                 </div>
             </div>
-            <div className="border-start details-profile-container" style={{ width: `${box2Width}` }}>
-                <ProfileViewer fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} handleButtonClick={handleButtonClick} display={box1Width === "100%" ? "" : "show"} />
+            <div className={`border-start details-profile-container ${openBox2}`} 
+            // style={{ width: `${box2Width}` }}
+            >
+                <ProfileViewer fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} handleButtonClick={handleButtonClick} 
+                // display={box1Width === "100%" ? "" : "show"} 
+                display={openBox1 !== "open-box-1" ? "" : "show"} 
+
+                />
             </div>
         </>
     )

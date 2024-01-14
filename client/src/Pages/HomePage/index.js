@@ -15,6 +15,7 @@ function HomePage() {
   const { user, selectedChat, setSelectedChat, messageApi, contextHolder } = ChatState();
   const [selectedUsers, setselectedUsers] = useState([]);
   const [fetchAgain, setfetchAgain] = useState(false);
+  const [smOpen, setsmOpen] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,13 +36,19 @@ function HomePage() {
     setselectedUsers([]);
     setOpen(false);
   };
+  const showSingleChat=()=>{
+    setsmOpen(true);
+  }
+  const closeSingleChat=()=>{
+    setsmOpen(false);
+  }
   return (
     <>
       {contextHolder}
       {user && (
         <div className="main-container">
-          <div className="sidebar border-end border-2" style={containerStyle}>
-            <ChatBox showDrawer={showDrawer} fetchAgain={fetchAgain} />
+          <div className={`sidebar ${smOpen? "":"showing-sm"} border-end border-2`} style={containerStyle}>
+            <ChatBox showSingleChat={showSingleChat} showDrawer={showDrawer} fetchAgain={fetchAgain} />
             <DrawerMenu
               open={open}
               selectedUsers={selectedUsers}
@@ -49,10 +56,10 @@ function HomePage() {
               closeGroupChatCreater={closeGroupChatCreater}
             />
           </div>
-          <div className="message-box scroller-container">
+          <div className={`message-box ${smOpen? "showing-sm":""} scroller-container`}>
             {
               selectedChat ?
-                <MessageContainer fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
+                <MessageContainer closeSingleChat={closeSingleChat} fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
                 :
                 <BlankContainer />
             }

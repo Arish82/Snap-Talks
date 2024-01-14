@@ -61,6 +61,7 @@ export default function ChatBox(props) {
                 searchResult={searchResult}
                 searchTime={searchTime}
                 fetchAgain={props.fetchAgain}
+                showSingleChat={props.showSingleChat}
             />
         </>
     );

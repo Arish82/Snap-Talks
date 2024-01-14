@@ -1,5 +1,6 @@
 /* All the sets of messages */
 .all-chats-set {
+  /* border: 2px solid red; */
   /* width: fit-content; */
   display: flex;
   gap: 0.6em;
@@ -35,7 +36,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.15em;
-  /* border: 2px solid red; */
 }
 .message-content .user-details {
   display: flex;
@@ -60,6 +60,7 @@
 }
 
 .each-message-box-container {
+  /* border: 2px solid red; */
   /* border: 2px solid green; */
   /* cursor: pointer; */
   /* display: flex; */
@@ -163,4 +164,108 @@
 .opt {
   font-size: 1.2em;
   margin-right: 1.2em;
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
+  .message-content .each-message-box {
+    padding: 0.8em 1.2em;
+    border-radius: 28px;
+  }
+  .user-pic div {
+    width: 2.3em;
+    height: 2.3em;
+  }
+  .message-likes-time .time {
+    font-size: 0.7em;
+  }
+  .message-likes-time .seen-icons svg{
+    font-size: 1.3em;
+    margin-left: 0.2em;
+  }
+  .all-chats-set{
+    gap: 0.3em;
+  }
+  .message-content .each-message-box {
+    max-width: 85%;
+  }
+}
+
+@media only screen and (min-width: 680px) and (max-width: 1024px) {
+  .message-content .each-message-box {
+    padding: 0.8em 1.2em;
+    border-radius: 32px;
+  }
+  .user-pic div {
+    width: 2.8em;
+    height: 2.8em;
+  }
+  .message-likes-time .time {
+    font-size: 0.7em;
+  }
+  .message-likes-time .seen-icons svg{
+    font-size: 1.3em;
+    margin-left: 0.2em;
+  }
+  .message-content p{
+    font-size: 0.95em;
+  }
+  .all-chats-set{
+    gap: 0.3em;
+  }
+  .message-content .each-message-box {
+    max-width: 85%;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 679px) {
+  .message-content .each-message-box {
+    padding: 0.7em 1.2em;
+    border-radius: 32px;
+  }
+  .user-pic div {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .message-likes-time .time {
+    font-size: 0.7em;
+  }
+  .message-likes-time .seen-icons svg{
+    font-size: 1.3em;
+    margin-left: 0.2em;
+  }
+  .message-content p{
+    font-size: 0.96em;
+  }
+  .all-chats-set{
+    gap: 0.3em;
+  }
+  .message-content .each-message-box {
+    max-width: 85%;
+  }
+}
+@media only screen and (max-width: 600px){
+  .message-content .each-message-box {
+    padding: 1em 1.4em;
+    border-radius: 32px;
+    /* border: 2px solid red; */
+  }
+  .user-pic div {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .message-likes-time .time {
+    font-size: 0.85em;
+  }
+  .message-likes-time .seen-icons svg{
+    font-size: 1.3em;
+    margin-left: 0.2em;
+  }
+  .message-content p{
+    font-size: 1em;
+  }
+  .all-chats-set{
+    gap: 0.8em;
+  }
+  .message-content .each-message-box {
+    max-width: 95%;
+  }
 }
