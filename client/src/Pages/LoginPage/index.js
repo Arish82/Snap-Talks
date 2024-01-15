@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./index.css";
 import { Link, useNavigate } from 'react-router-dom';
-// import PopUpMessage from '../Toast';
+import { MessageFilled } from "@ant-design/icons";
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import PopUpMessage from '../../Sections/Components/Toast';
@@ -18,16 +18,16 @@ export default function LoginPage() {
     const { user } = ChatState();
 
     useEffect(() => {
-      const userInfo = localStorage.getItem("user");
-      if(userInfo) {
-        navigate("/chats");
-      }
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            navigate("/chats");
+        }
     }, [navigate]);
 
-    const loginHandle = async (event) =>{
+    const loginHandle = async (event) => {
         event.preventDefault();
         setloading(true);
-        if(!email || !password) {
+        if (!email || !password) {
             setmessage("Enter all fields");
             setcolor('danger');
             settoastshow(true);
@@ -35,16 +35,16 @@ export default function LoginPage() {
             return;
         }
 
-        try{
+        try {
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
             };
 
-            const {data} = await axios.post("/api/user/login",{
+            const { data } = await axios.post("/api/user/login", {
                 email, password
-            },config);
+            }, config);
             console.log(data);
             setmessage("Login Successful");
             settoastshow(true);
@@ -53,11 +53,11 @@ export default function LoginPage() {
             setloading(false);
             navigate("/chats");
         }
-        catch(err) {
-            if(err.request.status===500) {
+        catch (err) {
+            if (err.request.status === 500) {
                 setmessage(err.request.statusText);
             }
-            else{
+            else {
                 setmessage(err.response.data.message);
             }
             settoastshow(true);
@@ -72,6 +72,13 @@ export default function LoginPage() {
                     <h1 className="header">
                         Login - SnapTalk
                     </h1>
+                    {/* <div className="logo">
+                        Login -
+                        <span>Snap</span>Talk
+                        <span>
+                            <MessageFilled className="logo-icon" />
+                        </span>
+                    </div> */}
                     <div className="mb-3 fields">
                         <label for="email" className="form-label">Email</label>
                         <input
