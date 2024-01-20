@@ -44,7 +44,6 @@ export default function ProfileViewer(props) {
             setSelectedChat(data);
             props.setfetchAgain(!props.fetchAgain)
         } catch (err) {
-            console.log(err);
             openMessage("change","error","⚠️ Oops! Failed to Give the Group a Makeover!");
         }
     }
@@ -65,7 +64,6 @@ export default function ProfileViewer(props) {
             props.setfetchAgain(!props.fetchAgain)
             openMessage("leaving","success","🚪 Sad to See You Go! You've Left the Group.");
         } catch (err) {
-            console.log(err);
             openMessage("leaving","error","⚠️ Oops! Couldn't Bid Farewell to the Group.");
         }
     }
@@ -87,7 +85,6 @@ export default function ProfileViewer(props) {
             setSelectedChat(data);
             props.setfetchAgain(!props.fetchAgain)
         } catch (err) {
-            console.log(err);
             openMessage("remove","error","⚠️ Oops! Ta-da Turned into Na-na. Couldn't Remove User from the Group! 😅");
         }
     }
@@ -166,7 +163,7 @@ export default function ProfileViewer(props) {
                             </>
                         }
                         {
-                            selectedChat.users.map((chat) => {
+                            selectedChat.users.map((chat, key) => {
                                 const items = [
                                     {
                                         key: '1',
@@ -183,6 +180,7 @@ export default function ProfileViewer(props) {
                                 ];
                                 return (
                                     <ChatCard
+                                        key={key}
                                         url={chat.pic}
                                         chatname={chat.name}
                                         latestMessage={chat.email}

@@ -53,4 +53,8 @@ const allMessages = expressAsyncHandler(async (req,res)=>{
     }
 })
 
+const deleteMessages = expressAsyncHandler(async(req,res)=>{
+    const {messageId} = req.body;
+})
+
 module.exports = {sendMessages, allMessages };

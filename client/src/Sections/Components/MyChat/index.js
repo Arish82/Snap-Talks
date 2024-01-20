@@ -5,10 +5,17 @@ import ChatCard from '../ChatCard';
 import axios from 'axios';
 import { ChatState } from '../../../Context/ChatProvider';
 
-export default function MyChat(props) {
-    const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
-    const [userlogged, setuserlogged] = useState();
+const myMsg = (id, notification)=>{
+    let count=0;
+    notification && notification.map((chat)=>{
+        if(chat.chat._id===id) count++;
+    })
+    return count;
+}
 
+export default function MyChat(props) {
+    const { user, chats, setChats, selectedChat, setSelectedChat, notification, setnotification } = ChatState();
+    const [userlogged, setuserlogged] = useState();
     const handleCreateChat = async (userId) => {
         try {
             const config = {
@@ -18,7 +25,6 @@ export default function MyChat(props) {
                 }
             }
             const { data } = await axios.post("/api/chat", { userId }, config);
-            // console.log(data, "Arish");
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
 
             setSelectedChat(data);
@@ -44,7 +50,6 @@ export default function MyChat(props) {
     useEffect(() => {
         setuserlogged(JSON.parse(localStorage.getItem("user")));
         fetchChats();
-        // console.log(chats);
     }, [props.fetchAgain]);
 
     return (
@@ -72,7 +77,6 @@ export default function MyChat(props) {
                     (!props.searchTime) &&
                     chats && chats.map((chat,key) => {
                         const sender = getsender(userlogged, chat.users);
-                        console.log(chat.latestMessage);
                         return (
                             <ChatCard
                                 key={key}
@@ -80,6 +84,7 @@ export default function MyChat(props) {
                                 onClickFunc={() => {
                                     setSelectedChat(chat)
                                     props.showSingleChat();
+                                    setnotification(notification.filter((element) => element.chat._id !== chat._id))
                                 }}
                                 chatname={!chat.isGroupChat ? sender.name : chat.chatName}
                                 timestamp={convertTimestampToTime(chat.latestMessage ? chat.latestMessage.updatedAt: chat.updatedAt)}
@@ -88,7 +93,7 @@ export default function MyChat(props) {
                                     chat.latestMessage ? 
                                     (chat.latestMessage.sender.name +": "+ chat.latestMessage.content).substring(0,35) + ((chat.latestMessage.sender.name +": "+ chat.latestMessage.content).length>=35?"...":"")
                                     :"Hey, here I'm using SnapTalk!🙂"}
-                                unread={0}
+                                unread={myMsg(chat._id, notification)}
                                 typing={false}
                             />
                         )

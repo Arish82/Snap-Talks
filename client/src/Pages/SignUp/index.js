@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
 import PopUpMessage from '../../Sections/Components/Toast'
-import { ChatState } from '../../Context/ChatProvider';
+// import { ChatState } from '../../Context/ChatProvider';
 
 export default function SignUp() {
     const [name, setname] = useState("")
@@ -17,7 +17,7 @@ export default function SignUp() {
     const [toastshow, settoastshow] = useState(false);
     const [color, setcolor] = useState('');
     const navigate = useNavigate();
-    const { user } = ChatState();
+    // const { user } = ChatState();
 
     useEffect(() => {
       const userInfo = localStorage.getItem("user");

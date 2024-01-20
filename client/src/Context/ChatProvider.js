@@ -11,6 +11,7 @@ const ChatProvider = ({ children }) => {
   const [typing, settyping] = useState(false);
   const [istyping, setistyping] = useState(false);
   const navigate = useNavigate();
+  const [notification, setnotification] = useState([])
 
   const openMessage = (key, type, content, duration, className, style) => {
     messageApi.open({
@@ -29,7 +30,16 @@ const ChatProvider = ({ children }) => {
 
 
   return (
-    <chatContext.Provider value={{ user, setuser, chats, setChats, selectedChat, setSelectedChat, contextHolder, openMessage, typing, settyping, istyping, setistyping}} >
+    <chatContext.Provider value={{ 
+      user, setuser, 
+      chats, setChats, 
+      selectedChat, setSelectedChat, 
+      contextHolder, 
+      openMessage, 
+      typing, settyping, 
+      istyping, setistyping,
+      notification, setnotification
+      }} >
       {children}
     </chatContext.Provider>
   )

@@ -1,29 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import { Dropdown } from 'antd';
-import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
+import React from 'react'
 import "./index.css";
 import EachMessageBoxContainer from '../EachMessageBoxContainer';
 import { convertTimestampToTime } from '../../config/ChatLogic';
-import io from "socket.io-client"
-import { ChatState } from '../../../../Context/ChatProvider';
-// const ENDPOINT = "http://localhost:5000"
-// var socket;
 
 export default function AllChatSet(props) {
-    // const {user} = ChatState();
-    // const [socketConnected, setSocketConnected] = useState(false)
-    // useEffect(() => {
-    //   socket = io(ENDPOINT);
-    //   socket.emit("setup", user);
-    //   socket.on("connection", ()=>{
-    //     setSocketConnected(true)
-    //   })
-    // }, [])
-    
     return (
         <>
             <div className={`${props.sender}-chats all-chats-set`}>
@@ -43,15 +23,18 @@ export default function AllChatSet(props) {
                             )
                         })
                     }
-                    {/* <EachMessageBoxContainer message={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus corrupti accusantium harum dolorum, quas odit consequatur ipsum nisi doloribus placeat ea, tenetur laboriosam illum magnam expedita ratione! Rem, fugit maxime?"} time={"2:47 am"} />
-                    <EachMessageBoxContainer message={"Are you serious?"} time={"2:47 am"} />
-                    <EachMessageBoxContainer message={"Hi, Arish this side!"} time={"2:47 am"} /> */}
                 </div>
             </div>
         </>
     )
 }
 
+// import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
+// import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+// import { Dropdown } from 'antd';
+// import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
+// import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+// import EmojiEmotionsRoundedIcon from '@mui/icons-material/EmojiEmotionsRounded';
                     // <div className="each-message-box-container">
                     //     <div className="each-message-box first-message">
                     //         <p>

@@ -8,6 +8,7 @@ import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
 import "./index.css";
 import axios from "axios";
 import { ChatState } from "../../Context/ChatProvider";
+import { Badge, notification } from "antd";
 
 export default function ChatBox(props) {
     const { user} = ChatState();
@@ -51,7 +52,9 @@ export default function ChatBox(props) {
                     }}
                     id="serach"
                 />
-                <FilterListRoundedIcon />
+                <Badge count={notification.length} >
+                    <FilterListRoundedIcon />
+                </Badge>
                 <DropDownMenu showDrawer={props.showDrawer} />
             </div>
 

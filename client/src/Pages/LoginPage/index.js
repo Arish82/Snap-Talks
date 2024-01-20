@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./index.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { MessageFilled } from "@ant-design/icons";
+// import { MessageFilled } from "@ant-design/icons";
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import PopUpMessage from '../../Sections/Components/Toast';
-import { ChatState } from '../../Context/ChatProvider';
+// import { ChatState } from '../../Context/ChatProvider';
 
 export default function LoginPage() {
     const [email, setemail] = useState("");
@@ -15,7 +15,7 @@ export default function LoginPage() {
     const [toastshow, settoastshow] = useState(false);
     const [color, setcolor] = useState('');
     const navigate = useNavigate();
-    const { user } = ChatState();
+    // const { user } = ChatState();
 
     useEffect(() => {
         const userInfo = localStorage.getItem("user");

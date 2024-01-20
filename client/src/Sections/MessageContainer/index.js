@@ -35,11 +35,9 @@ const content = (
 );
 
 export default function MessageContainer({fetchAgain, setfetchAgain, closeSingleChat}) {
-    const {user, selectedChat, openMessage, typing, settyping, istyping, setistyping} = ChatState();
+    const {user, selectedChat, openMessage, typing, settyping, istyping, setistyping, notification, setnotification} = ChatState();
     const [message, setmessage] = useState("")
     const [allMessages, setallMessages] = useState([]);
-    // const [box1Width, setBox1Width] = useState("100%");
-    // const [box2Width, setBox2Width] = useState("0%");
     const [openBox1, setopenBox1] = useState("close-1");
     const [openBox2, setopenBox2] = useState("close-2");
     const [socketConnected, setSocketConnected] = useState(false)
@@ -55,8 +53,6 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
     }, [])
 
     const handleButtonClick = () => {
-        // setBox1Width(box1Width === "66%" ? "100%" : "66%");
-        // setBox2Width(box2Width === "0%" ? "33%" : "0%");
         setopenBox1(openBox1 === "open-box-1" ? "close-1" : "open-box-1");
         setopenBox2(openBox2 === "open-box-2" ? "close-2" : "open-box-2");
     };
@@ -80,9 +76,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
 
             setallMessages([...allMessages,data]);
             setfetchAgain(!fetchAgain)
-            // console.log(data);
         }catch(err){
-            console.log(err);
             openMessage("error-message","error","Message not sent!");
         }
     }
@@ -103,7 +97,6 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
             socket.emit("join chat", selectedChat._id);
         }
         catch(err){
-            console.log(err);
             openMessage("key","error","Failed to fetch messages");
         }
     }
@@ -113,10 +106,15 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
       selectedChatCompare = selectedChat;
     }, [selectedChat])
     
+    console.log(notification,"Arish");
+    
     useEffect(() => {
       socket.on("message received", (newMessageReceived)=>{
         if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
             //give notification
+            if(!notification.includes(newMessageReceived)){
+                setnotification([newMessageReceived,...notification]);
+            }
         }
         else {
             setallMessages([...allMessages, newMessageReceived])

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import './index.css'; // Ensure you have a CSS file named styles.css
-import { Button, Popover, Space } from 'antd';
+import React from 'react';
+import './index.css';
+import { Popover } from 'antd';
 
 
 function EmojiPalette({inputValue, setInputValue}) {
-//   const [inputValue, setInputValue] = useState('');
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
