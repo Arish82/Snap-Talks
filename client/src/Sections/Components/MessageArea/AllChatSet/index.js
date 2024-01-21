@@ -4,9 +4,10 @@ import EachMessageBoxContainer from '../EachMessageBoxContainer';
 import { convertTimestampToTime } from '../../config/ChatLogic';
 
 export default function AllChatSet(props) {
+    const classAnimation=`slide-in-${props.sender}`
     return (
         <>
-            <div className={`${props.sender}-chats all-chats-set`}>
+            <div className={`${props.sender}-chats all-chats-set ${classAnimation}`}>
                 <div className="user-pic">
                     <div>
                         <img className='' src={props.url} alt="" />
@@ -19,7 +20,7 @@ export default function AllChatSet(props) {
                     {
                         props.setMessage && props.setMessage.map((eachmessage)=>{
                             return(
-                                <EachMessageBoxContainer message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
+                                <EachMessageBoxContainer classAnimation={classAnimation} message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
                             )
                         })
                     }

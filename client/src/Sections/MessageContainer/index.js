@@ -106,8 +106,6 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
       selectedChatCompare = selectedChat;
     }, [selectedChat])
     
-    console.log(notification,"Arish");
-    
     useEffect(() => {
       socket.on("message received", (newMessageReceived)=>{
         if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
@@ -146,7 +144,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
     }
     const props = {
         chatName: "User Name",
-        status: "online"
+        status: "User"
     }
     
     return (

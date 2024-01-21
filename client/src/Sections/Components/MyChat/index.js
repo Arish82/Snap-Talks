@@ -50,6 +50,7 @@ export default function MyChat(props) {
     useEffect(() => {
         setuserlogged(JSON.parse(localStorage.getItem("user")));
         fetchChats();
+        setSelectedChat(selectedChat)
     }, [props.fetchAgain]);
 
     return (
@@ -77,10 +78,12 @@ export default function MyChat(props) {
                     (!props.searchTime) &&
                     chats && chats.map((chat,key) => {
                         const sender = getsender(userlogged, chat.users);
+                        {/* console.log(chat,selectedChat, chat===selectedChat) */}
                         return (
                             <ChatCard
                                 key={key}
-                                active={chat === selectedChat ? `active-holder` : "hovering"}
+                                id={key}
+                                active={selectedChat && chat._id === selectedChat._id ? `active-holder` : "hovering"}
                                 onClickFunc={() => {
                                     setSelectedChat(chat)
                                     props.showSingleChat();

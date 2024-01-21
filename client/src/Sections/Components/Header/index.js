@@ -6,8 +6,8 @@ import "./index.css"
 export default function Header(props) {
     return (
         <>
-            <div className="logo-header">
-                <div className="logo">
+            <div className="logo-header fade-in">
+                <div className="logo -in">
                     <span>Snap</span>Talk
                     <span>
                         <MessageFilled className="logo-icon" />

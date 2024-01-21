@@ -39,7 +39,7 @@ export default function ChatBox(props) {
     return (
         <>
             <Header url={user && user.pic} />
-            <div className="search-bar border-bottom border-1">
+            <div className="fade-in search-bar border-bottom border-1">
                 
                 <SearchBar
                     searchUser={searchUser}

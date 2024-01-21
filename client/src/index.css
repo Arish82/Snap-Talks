@@ -70,3 +70,93 @@ body{
     font-size: 16px;    
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.slide-in {
+  opacity: 0;
+  animation: slideIn 1s ease-out forwards;
+}
+.slide-in-right {
+  opacity: 0;
+  animation: slideInRight 0.8s ease forwards;
+}
+.slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.rotate-in {
+  opacity: 0;
+  animation: rotateIn 1s ease-out forwards;
+}
+
+.scale-in {
+  opacity: 0;
+  animation: scaleIn 1s ease-out forwards;
+}

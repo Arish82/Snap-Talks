@@ -8,7 +8,7 @@ import "./index.css";
 export default function EachMessageBoxContainer(props) {
     return (
         <>
-            <div className="each-message-box-container">
+            <div className={"each-message-box-container "+props.classAnimation}>
                 <div className="each-message-box first-message">
                     <p>
                         {props.message}
