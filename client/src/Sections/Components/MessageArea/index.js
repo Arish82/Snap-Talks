@@ -4,7 +4,7 @@ import AllChatSet from './AllChatSet';
 import { groupConsecutive } from '../config/ChatLogic';
 import { ChatState } from '../../../Context/ChatProvider';
 
-export default function MessageArea({allMessages}) {
+export default function MessageArea({allMessages, fetchAgain, setfetchAgain, setallMessages}) {
     const {user} = ChatState();
     groupConsecutive(allMessages)
     return ( 
@@ -12,9 +12,18 @@ export default function MessageArea({allMessages}) {
             <div className="scrollable-div scroller-design">
                 <div className="scrollable-content">
                     {
-                        allMessages && groupConsecutive(allMessages).map((setMessage)=>{
+                        allMessages && groupConsecutive(allMessages).map((setMessage,key)=>{
                             return(
-                                <AllChatSet setMessage={setMessage} sender={user._id===setMessage[0].sender._id?"right": "left"} url={setMessage[0].sender.pic} username={setMessage[0].sender.name} />
+                                <AllChatSet 
+                                    fetchAgain={fetchAgain} setfetchAgain={setfetchAgain}
+                                    setMessage={setMessage} 
+                                    allMessages={allMessages}
+                                    setallMessages={setallMessages}
+                                    sender={user._id===setMessage[0].sender._id?"right": "left"} 
+                                    url={setMessage[0].sender.pic} 
+                                    username={setMessage[0].sender.name} 
+                                    key={key}
+                                />
                             )
                         })
                     }

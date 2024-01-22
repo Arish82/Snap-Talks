@@ -178,7 +178,7 @@ export default function MessageContainer({fetchAgain, setfetchAgain, closeSingle
                 </div>
 
                 <div className="chat-body">
-                    <MessageArea allMessages={allMessages} />
+                    <MessageArea allMessages={allMessages} setallMessages={setallMessages} fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
                 </div>
                 <div className="chat-footer ">
                     <div className="chat-icons">

@@ -18,9 +18,10 @@ export default function AllChatSet(props) {
                         <div className="user-name">{props.username}</div>
                     </div>
                     {
-                        props.setMessage && props.setMessage.map((eachmessage)=>{
+                        props.setMessage && props.setMessage.map((eachmessage,key)=>{
+                            console.log(eachmessage);
                             return(
-                                <EachMessageBoxContainer classAnimation={classAnimation} message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
+                                <EachMessageBoxContainer sender={props.sender} allMessages={props.allMessages} setallMessages={props.setallMessages} fetchAgain={props.fetchAgain} setfetchAgain={props.setfetchAgain} key={key} messageId={eachmessage._id} classAnimation={classAnimation} message={eachmessage.content} time={convertTimestampToTime(eachmessage.updatedAt)} />
                             )
                         })
                     }
