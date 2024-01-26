@@ -17,15 +17,36 @@ const messageRoutes = require('./routes/messageRoutes.js');
 // connecting db.js
 require('./config/db')
 
+const path=require("path");
+
 // router middleware 
 app.use(express.json());
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes)
 app.use('/api/message',messageRoutes)
 
-app.get("/",(req,res)=>{
-    res.send("Hello World!");
-})
+
+
+// ----------------Deployment--------------------
+
+
+const __dirname1 = path.resolve();
+
+if(process.env.NODE_ENV==="production"){
+
+    app.use(express.static(path.join(__dirname1, "/client/build")));
+
+    app.get('*', (req,res)=>{
+        res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+    })
+
+}else{
+    app.get("/",(req,res)=>{
+        res.send("Hello World!");
+    })
+}
+
+// ----------------Deployment--------------------
 
 // server is created
 const server = app.listen(PORT, (err)=>{

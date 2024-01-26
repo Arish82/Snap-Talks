@@ -58,7 +58,7 @@ export default function EachMessageBoxContainer(props) {
                             <EmojiEmotionsRoundedIcon />
                         </span>
                         {
-                            props.sender!='left' &&
+                            props.sender!=='left' &&
                             <span>
                                 <Popconfirm
                                     title="Delete"
