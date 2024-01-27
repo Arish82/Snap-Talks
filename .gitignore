@@ -7,8 +7,8 @@
 /coverage
 
 # production
-/client/build
+/frontend/build
 
 .env
 
-/client/node_modules
+/frontend/node_modules

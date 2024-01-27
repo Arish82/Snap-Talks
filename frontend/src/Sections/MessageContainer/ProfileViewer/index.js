@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Image } from 'antd';
 import "./index.css";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -60,6 +60,7 @@ export default function ProfileViewer(props) {
                 chatId: selectedChat._id,
                 userId: user._id
             }, config);
+            console.log(data);
             setSelectedChat("");
             props.setfetchAgain(!props.fetchAgain)
             openMessage("leaving","success","🚪 Sad to See You Go! You've Left the Group.");

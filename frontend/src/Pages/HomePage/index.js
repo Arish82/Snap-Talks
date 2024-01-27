@@ -12,7 +12,7 @@ import BlankContainer from "../../Sections/Components/BlankContainer";
 
 function HomePage() {
   const [open, setOpen] = useState(false);
-  const { user, selectedChat, setSelectedChat, messageApi, contextHolder } = ChatState();
+  const { user, selectedChat, contextHolder } = ChatState();
   const [selectedUsers, setselectedUsers] = useState([]);
   const [fetchAgain, setfetchAgain] = useState(false);
   const [smOpen, setsmOpen] = useState(false)

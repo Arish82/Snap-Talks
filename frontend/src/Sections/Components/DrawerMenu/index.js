@@ -39,7 +39,7 @@ function DrawerMenu(props) {
 
     useEffect(() => {
       handleUserSearch("");
-    }, [])
+    }, [  ])
 
     return (
         <>
@@ -109,18 +109,6 @@ function DrawerMenu(props) {
                                     )
                                 })
                             }
-                            {/* <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" />
-                            <ChatCard style={{ height: "20%" }} url={url} latestMessage="Hey, here I'm using SnapTalk" chatname="User Name" /> */}
                         </div>
                     </div>
                 }
@@ -137,23 +125,3 @@ function DrawerMenu(props) {
 }
 
 export default DrawerMenu;
-
-{/* {
-    groupName &&
-    <>
-        <div className="groupchat-creater-body upload-box">
-            <UploadImage />
-            <EmojiInput />
-        </div>
-    </>
-} */}
-{/* <div className="groupchat-creater-footer d-flex border-top justify-content-center align-items-center">
-    <button className='squircles' >
-        {
-            !groupName && <ArrowForwardRoundedIcon disabled onClick={nextStephandler} />
-        }
-        {
-            groupName && <DoneOutlineRoundedIcon />
-        }
-    </button>
-</div> */}
